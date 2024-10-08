@@ -13,5 +13,7 @@ public static void main(String[] args) {
     card.getContentPane().setBackground(Color.black);
     card3.getContentPane().setBackground(Color.red);
     card3.setSize(1000, 200);
+
+    int i = 0;
 }
 }
