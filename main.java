@@ -7,11 +7,10 @@ import javax.swing.*;
  */
 public class main{
 public static void main(String[] args) {
-    //for now just testing how stiff works, nothing important here
-    Canvas m = new Canvas();    
+    //for now just testing how stuff works, nothing important here 
     Card card = new Card();
-    
-    card.setSize(800, 800);
+    JFrame frame = new JFrame();
+    frame.setVisible(true);
 
     //Card card2 = new Card();
     //Card card3 = new Card();

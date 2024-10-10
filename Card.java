@@ -19,15 +19,15 @@ public class Card extends JFrame implements FocusListener, MouseMotionListener{
 //---------------------
     @Override
     public void mouseDragged(MouseEvent e) {
-        mousePosition = new Point(e.getX() , e.getY());
+        mousePositionOnScreen = new Point(e.getX() , e.getY());
+        this.setLocation(mousePositionOnScreen);
     }
 
     @Override
-    public void mouseMoved(MouseEvent e) {
-    }
+    public void mouseMoved(MouseEvent e) {}
 
 //===================================================================
-    Point mousePosition; //position of Mouse while it's being dragged (pressed + moved)
+    Point mousePositionOnScreen; //position of Mouse while it's being dragged (pressed + moved)
     JLabel diplayImage;
     ImageIcon image;
     Dimension size = new Dimension();
@@ -36,14 +36,15 @@ public class Card extends JFrame implements FocusListener, MouseMotionListener{
 //==================================================================
 
 
-    Card(){
+    public Card(){
         this.setUndecorated(true);
         this.addFocusListener(this);
         this.addMouseMotionListener(this);
-        this.setVisible(visible); // TODO overite in each enemy card?
-        this.setSize(400, 300); //TODO DElEte this, overrite it in each subclass - use % of the screen resolution
+
+        this.setSize(400, 300); //TODO Delete this, override it in each subclass - use % of the screen resolution
+        this.setVisible(visible); // TODO overrid in each enemy card?
         
-        
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     
