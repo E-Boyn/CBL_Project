@@ -6,23 +6,61 @@ import java.awt.*;
 import java.awt.event.*;
 
 //TODO Make this class abstract
-public class Card extends JFrame {
+public class Card extends JFrame implements FocusListener, MouseMotionListener{
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        mousePositionOnScreen = new Point(e.getX() , e.getY());
+        this.setLocation(mousePositionOnScreen);
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'mouseMoved'");
+    }
+
+    @Override
+    public void focusGained(FocusEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'focusGained'");
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'focusLost'");
+    }
+//=============================================================================
     JLabel diplayImage;
     ImageIcon image;
-    Dimension size = new Dimension();
+
+//-------------------------------
+double screenPersantage;
+int w;
+//-------------------------------
+
+    Dimension size;
     String imagePath = "";
-
-    Card(){
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+    Point mousePositionOnScreen;
+    protected StringBuilder imagePaths;
+//=============================================================================
+   public Card(){
         this.setUndecorated(true);
-        this.addFocusListener(new CustomFocusListener());
+        this.addFocusListener(this);
+        this.addMouseMotionListener(this);
 
+    }
+
+    protected void popCard(){
+        this.setSize(size.width,size.height); //TODO DElEte this, overrite it in each subclass - use % of the screen resolution
         this.setVisible(true); // TODO overite in each enemy card?
-        this.setSize(400, 300); //TODO DElEte this, overrite it in each subclass - use % of the screen resolution
-        
-        image = new ImageIcon(getClass().getResource("images\\house1.png"));
+    }
+
+    protected void setImage(String path){
+        image = new ImageIcon(getClass().getResource(path));
         diplayImage = new JLabel(image);
         this.add(diplayImage);
     }
+
 }
