@@ -11,6 +11,9 @@ public static void main(String[] args) {
     Card card = new Card();
     
     card.setSize(800, 800);
+    
+    card.setImage("images\\tree2.png");
+    card.setVisible(true);;
     //Card card2 = new Card();
     //Card card3 = new Card();
     //card.getContentPane().setBackground(Color.black);
