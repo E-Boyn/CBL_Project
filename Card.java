@@ -58,9 +58,17 @@ int w;
     }
 
     protected void setImage(String path){
+    protected void setImage(String imagePath, double widthRatio, double heightRatio) {
+        image = new ImageIcon(getClass().getResource(imagePath));
+        displayImage = new JLabel(image);
+        this.add(displayImage);
         image = new ImageIcon(getClass().getResource(path));
         diplayImage = new JLabel(image);
         this.add(diplayImage);
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int screenWidth = screenSize.width; 
+        int screenHeight = screenSize.height; 
     }
 
 }
