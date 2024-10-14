@@ -10,8 +10,15 @@ public class Card extends JFrame implements FocusListener, MouseMotionListener{
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        mousePositionOnScreen = new Point(e.getX() , e.getY());
+        int x = (int)(e.getXOnScreen() - mousePosition.getX());
+        int y = (int)(e.getYOnScreen() - mousePosition.getY());
+
+        mousePositionOnScreen = new Point(x , y);
         this.setLocation(mousePositionOnScreen);
+    }
+    
+    public void mousePressed(MouseEvent e){
+        mousePositionOnScreen = new Point(e.getX() , e.getY());
     }
 
     @Override
@@ -43,6 +50,7 @@ int w;
     Dimension size;
     String imagePath = "";
     Point mousePositionOnScreen;
+    Point mousePosition;
     protected StringBuilder imagePaths;
 //=============================================================================
    public Card(){

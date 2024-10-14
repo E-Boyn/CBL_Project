@@ -8,7 +8,6 @@ import javax.swing.*;
 public class main{
 public static void main(String[] args) {
     //for now just testing how stiff works, nothing important here
-    Canvas m = new Canvas();    
     Card card = new Card();
     
     card.setSize(800, 800);
