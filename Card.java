@@ -52,17 +52,9 @@ int w;
 
     }
 
-    protected void popCard(){
-        this.setSize(size.width,size.height); //TODO DElEte this, overrite it in each subclass - use % of the screen resolution
-        this.setVisible(true); // TODO overite in each enemy card?
-    }
 
-    protected void setImage(String path){
     protected void setImage(String imagePath, double widthRatio, double heightRatio) {
         image = new ImageIcon(getClass().getResource(imagePath));
-        displayImage = new JLabel(image);
-        this.add(displayImage);
-        image = new ImageIcon(getClass().getResource(path));
         diplayImage = new JLabel(image);
         this.add(diplayImage);
 
@@ -78,9 +70,6 @@ int w;
 
     }
 
-    protected void popCard() {
-        this.setSize(size.width,size.height); //TODO DElEte this, overrite it in each subclass - use % of the screen resolution
-        this.setVisible(true); // TODO overite in each enemy card?
-        }
+    protected void popCard()
 
 }
