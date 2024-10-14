@@ -1,21 +1,24 @@
-import java.awt.*;  
-import javax.swing.JFrame;
-import javax.swing.*;
+import javax.swing.SwingUtilities;
+public class Main {
 
-/**
- * main
- */
-public class main{
-public static void main(String[] args) {
-    //for now just testing how stiff works, nothing important here
-    Canvas m = new Canvas();    
-    Card card = new Card();
-    
-    card.setSize(800, 800);
-    //Card card2 = new Card();
-    //Card card3 = new Card();
-    //card.getContentPane().setBackground(Color.black);
-   // card3.getContentPane().setBackground(Color.red);
-    //card3.setSize(1000, 200);
-}
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            
+            Player playerCard = new Player();
+            playerCard.popCard();
+
+            Dagger daggerCard = new Dagger();
+            daggerCard.popCard();
+
+            //Tree treeCard = new Tree();
+            //treeCard.popCard();
+
+            //House houseCard = new House();
+            //houseCard.popCard(); 
+
+            //Treasure treasureCard = new Treasure();
+            //treasureCard.popCard(); 
+
+        });
+    }
 }
