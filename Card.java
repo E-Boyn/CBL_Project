@@ -69,6 +69,18 @@ int w;
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int screenWidth = screenSize.width; 
         int screenHeight = screenSize.height; 
+
+        int cardWidth = (int) (screenWidth * widthRatio);
+        int cardHeight = (int) (screenHeight * heightRatio);
+
+        this.setSize(cardWidth, cardHeight);
+        this.pack(); //resize frame to fit image
+
     }
+
+    protected void popCard() {
+        this.setSize(size.width,size.height); //TODO DElEte this, overrite it in each subclass - use % of the screen resolution
+        this.setVisible(true); // TODO overite in each enemy card?
+        }
 
 }
