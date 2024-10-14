@@ -1,8 +1,4 @@
-import java.awt.Dimension;
-import java.awt.Toolkit;
-
 public class Player extends Card {
-
     public Player() {
         super();
         double heightPercentage = 0.1111;

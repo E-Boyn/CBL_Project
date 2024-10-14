@@ -54,22 +54,33 @@ public class Card extends JFrame implements FocusListener, MouseMotionListener{
         this.addMouseMotionListener(this);
     }
 
-    /** Method to set fixed image generation: Icon, Dagger, Enemy, and Treasure.
+    /** Method to set image generation.
+     * Subclasses with fixed generation: Player, Dagger, Enemy, Treasure.
      */
 
     protected void setImage(String imagePath, double heightPercentage, double widthHeightRatio) {
-        image = new ImageIcon(getClass().getResource(imagePath));
-        diplayImage = new JLabel(image);
-        this.add(diplayImage);
-
+        // Load original image
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource(imagePath));
+        Image image = imageIcon.getImage();
+        
+        // Calculate height based on screen size and percentage
         int cardHeight = (int) (screenHeight * heightPercentage);
         int cardWidth = (int) (cardHeight * widthHeightRatio);
 
+        // Resize image to fit card
+        Image scaledImage = image.getScaledInstance(cardWidth, cardHeight, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+
+        // Set scaled image in JLabel
+        JLabel diplayImage = new JLabel(scaledIcon);
+        this.add(diplayImage);
+
         this.setSize(cardWidth, cardHeight);
-        this.pack(); //resize frame to fit image
+        this.pack(); // Adjust frame to fit image
     }
 
-    /** Method to set a random image genberation: Tree, House, Cave from the imagePaths array.
+    /** Method to set a random image geneeration making use of setImage().
+     * Subclasses with random generations: Tree, House, Cave.
      *  */
     protected void setRandomImage(double widthRatio, double heightRatio) {
         if (imagePaths == null || imagePaths.length == 0) {
