@@ -29,9 +29,13 @@ public class Card extends JFrame implements FocusListener, MouseMotionListener, 
     
     @Override
     public void focusLost(FocusEvent e) {
-        // TODO Auto-generated method stub
+        isActivated = false;
     }
 
+    @Override
+    public void focusGained(FocusEvent e) {
+       isActivated = true;
+    }
 //====================================================================================    
     protected String[] imagePaths; // String array template for random image generation
     
@@ -44,7 +48,8 @@ public class Card extends JFrame implements FocusListener, MouseMotionListener, 
 
     private Point mousePosition = new Point();
 
-
+    protected boolean isActivated;
+    protected boolean firstActivated = true;
     JLabel diplayImage;
     ImageIcon image;
 
@@ -157,7 +162,6 @@ int w;
      */
 
     protected void popCard(){
-
     }
 //=============================================================================
 
@@ -192,9 +196,4 @@ int w;
         // TODO Auto-generated method stub
     }
 
-
-    @Override
-    public void focusGained(FocusEvent e) {
-        // TODO Auto-generated method stub
-    }
 }

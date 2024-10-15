@@ -1,4 +1,6 @@
-public class Cave extends Card{
+import java.awt.*;
+import java.awt.event.*;
+public class Cave extends EnviromentCard{
 
     public Cave() {
         super();
@@ -12,6 +14,11 @@ public class Cave extends Card{
 
 
         setRandomImage(); //tentative percentage (NOT YET CALCULATED) 
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+
     }
 
     @Override

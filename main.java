@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import javax.swing.ImageIcon;
@@ -11,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.*;
 
 public class main {
-
     /**
      * Manage locations of environment cards and hides enemy and treasure cards amidst them.
      * 
@@ -60,15 +60,17 @@ public class main {
         int y = chosenEnv.y + rand.nextInt(Math.max(1, chosenEnv.height - card.getHeight()));
         card.setLocation(x, y);
     }
-
     public static void main(String[] args) {
-            
+
         Tree tree = new Tree();
         tree.setVisible(true);
+
+        House house = new House();
+        house.setVisible(true);
+        
         Card card=new Card();
         card.setSize(100,200);
         card.setVisible(true);
-
         /*
             //Display player & dagger at fixed positions
             Player playerCard = new Player();
