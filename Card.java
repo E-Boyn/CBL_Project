@@ -14,15 +14,15 @@ public class Card extends JFrame implements FocusListener, MouseMotionListener, 
     //============================ Start of Card generation ============================
 
     public void mouseDragged(MouseEvent e) {
-        int x = (int)(e.getXOnScreen() - mousePosition.getX());
-        int y = (int)(e.getYOnScreen() - mousePosition.getY());
+        int x = (int)(e.getXOnScreen() - this.xM);
+        int y = (int)(e.getYOnScreen() - this.yM);
        
         this.setLocation(x,y);
     }
 
     public void mousePressed(MouseEvent e) {
-        mousePosition.x = e.getX();
-        mousePosition.y = e.getY();
+        this.xM = e.getX();
+        this.yM = e.getY();
     }
     
     @Override
@@ -40,6 +40,20 @@ public class Card extends JFrame implements FocusListener, MouseMotionListener, 
     protected double widthRatio;
     protected double heightRatio;
 
+    JLabel diplayImage;
+    ImageIcon image;
+
+//-------------------------------
+double screenPersantage;
+int w;
+//-------------------------------
+
+    Dimension size;
+    String imagePath = "";
+    int xM;
+    int yM;
+
+
     /**
      * Constructor initializes the card.
      * 
@@ -52,6 +66,8 @@ public class Card extends JFrame implements FocusListener, MouseMotionListener, 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.screenWidth = screenSize.width;
         this.screenHeight = screenSize.height;
+        System.out.println("Screen size: w = " + screenWidth + " h= " + screenHeight);
+        //TODO doesnt read right screen size
 
         this.setUndecorated(true);
 
@@ -73,8 +89,8 @@ public class Card extends JFrame implements FocusListener, MouseMotionListener, 
         Image image = imageIcon.getImage();
         
         // Calculate height based on screen size and percentage
-        int cardHeight = (int) (screenHeight * heightPercentage);
-        int cardWidth = (int) (cardHeight * widthHeightRatio);
+        int cardHeight = (int) (this.screenHeight * this.heightPercentage);
+        int cardWidth = (int) (cardHeight *this.widthHeightRatio);
 
         // Resize image to fit card
         Image scaledImage = image.getScaledInstance(cardWidth, cardHeight, Image.SCALE_SMOOTH);
@@ -142,17 +158,7 @@ public class Card extends JFrame implements FocusListener, MouseMotionListener, 
 
 
 //=============================================================================
-    JLabel diplayImage;
-    ImageIcon image;
 
-//-------------------------------
-double screenPersantage;
-int w;
-//-------------------------------
-
-    Dimension size;
-    String imagePath = "";
-    Point mousePosition = new Point(0 , 0);
 
 //Not used methods
 //========================================================================================================
@@ -188,6 +194,5 @@ int w;
     @Override
     public void focusGained(FocusEvent e) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'focusGained'");
     }
 }

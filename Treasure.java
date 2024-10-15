@@ -3,8 +3,8 @@ public class Treasure extends Card {
     public Treasure() {
         super();
         heightPercentage = 0.2222;
-        heightRatio = 1.25;
-        
+        widthHeightRatio = 1.25;
+
         setImage("/images/treasure.png");
     }
 

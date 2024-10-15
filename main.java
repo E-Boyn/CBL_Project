@@ -62,8 +62,14 @@ public class main {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
             
+        Tree tree = new Tree();
+        tree.setVisible(true);
+        Card card=new Card();
+        card.setSize(100,200);
+        card.setVisible(true);
+
+        /*
             //Display player & dagger at fixed positions
             Player playerCard = new Player();
             playerCard.popCard();
@@ -83,7 +89,6 @@ public class main {
 
             positionCards(environmentCards, enemyCard, treasureCard, 
                 treeCard.screenWidth, treeCard.screenHeight);
-
-        });
+ */
     }
 }

@@ -2,8 +2,8 @@ public class Player extends Card {
     public Player() {
         super();
         heightPercentage = 0.1111;
-        heightRatio = 1.0;
-        
+        widthHeightRatio = 1.0;
+
         setImage("/images/player.png");
     }
 
