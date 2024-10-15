@@ -122,7 +122,7 @@ public class Card extends JFrame implements FocusListener, MouseMotionListener{
     }
 
 
-    /** From Card.java in nenvironment-generation branch
+    /** From Card.java in environment-generation branch
      * Generates random position on the screen within the given maximum
      * width (maxX) and height (maxY) values.
      * 
@@ -167,7 +167,8 @@ public class Card extends JFrame implements FocusListener, MouseMotionListener{
             environmentCard.setVisible(true);
         }
 
-        // Hide enemy and treasure cards behind or between environment cards
+        // Hide enemy and treasure cards behind or between environment cards 
+        // TODO !!!!!!! make it so that it's JUST behind. Not between. Between unguaranteed hiding
         placeCardBehindEnvironment(rand, enemyCard, environmentBounds);
         enemyCard.setVisible(true);
         placeCardBehindEnvironment(rand, treasureCard, environmentBounds);
