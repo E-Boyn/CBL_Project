@@ -9,31 +9,29 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-//TODO Make this class abstract
-public class Card extends JFrame implements FocusListener, MouseMotionListener{
-
+/** Test.
+ * 
+ */
+public class Card extends JFrame implements FocusListener, MouseMotionListener, MouseListener {
+    Point mousePosition = new Point(0, 0);
+    
     @Override
     public void mouseDragged(MouseEvent e) {
-        mousePositionOnScreen = new Point(e.getX() , e.getY());
-        this.setLocation(mousePositionOnScreen);
+        int x = (int) (e.getXOnScreen() - mousePosition.getX());
+        int y = (int) (e.getYOnScreen() - mousePosition.getY());
+       
+        this.setLocation(x, y);
     }
-
+    
     @Override
-    public void mouseMoved(MouseEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mouseMoved'");
+    public void mousePressed(MouseEvent e) {
+        mousePosition.x = e.getX();
+        mousePosition.y = e.getY();
     }
 
     @Override
     public void focusGained(FocusEvent e) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'focusGained'");
-    }
-
-    @Override
-    public void focusLost(FocusEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'focusLost'");
     }
 
     Point mousePositionOnScreen;
@@ -193,6 +191,38 @@ public class Card extends JFrame implements FocusListener, MouseMotionListener{
 
     protected void popCard(){
 
+    }
+    
+    // ============================ Not used methods ============================
+    @Override
+    public void focusLost(FocusEvent e) {
+        // TODO Auto-generated method stub
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        // TODO Auto-generated method stub
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        // TODO Auto-generated method stub
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        // TODO Auto-generated method stub
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        // TODO Auto-generated method stub
     }
 
 }
