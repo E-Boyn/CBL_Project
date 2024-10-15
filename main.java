@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import javax.swing.*;
 
@@ -62,6 +58,8 @@ public class main {
     }
     public static void main(String[] args) {
 
+        SwingUtilities.invokeLater(() -> {
+            
         Tree tree = new Tree();
         tree.setVisible(true);
 
@@ -71,6 +69,9 @@ public class main {
         Card card=new Card();
         card.setSize(100,200);
         card.setVisible(true);
+        });
+
+
         /*
             //Display player & dagger at fixed positions
             Player playerCard = new Player();
