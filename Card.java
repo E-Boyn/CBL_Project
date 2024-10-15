@@ -159,15 +159,6 @@ int w;
     protected void popCard(){
 
     }
-
-    public Point randomPosition(int maxX, int maxY){
-        int x = (int) (Math.random() * maxX);
-        int y = (int) (Math.random() * maxY);
-        
-        return new Point(x,y);
-    }
-
-
 //=============================================================================
 
 
