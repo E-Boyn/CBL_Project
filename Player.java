@@ -1,8 +1,10 @@
 public class Player extends Card {
     public Player() {
         super();
-        double heightPercentage = 0.1111;
-        setImage("/images/player.png", heightPercentage, 1.0);
+        heightPercentage = 0.1111;
+        heightRatio = 1.0;
+        
+        setImage("/images/player.png");
     }
 
     @Override

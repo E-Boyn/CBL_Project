@@ -2,8 +2,10 @@ public class Treasure extends Card {
 
     public Treasure() {
         super();
-        double heightPercentage = 0.2222;
-        setImage("/images/treasure.png", heightPercentage, 1.25);
+        heightPercentage = 0.2222;
+        heightRatio = 1.25;
+        
+        setImage("/images/treasure.png");
     }
 
     @Override

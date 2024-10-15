@@ -1,8 +1,10 @@
 public class Dagger extends Card {
     public Dagger() {
         super();
-        double heightPercentage = 0.22;
-        setImage("/images/dagger.png", heightPercentage, 0.6);
+        heightPercentage = 0.22;
+        heightRatio = 0.6;
+        
+        setImage("/images/dagger.png");
     }
 
     @Override

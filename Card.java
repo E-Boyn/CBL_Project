@@ -13,11 +13,32 @@ import javax.swing.JPanel;
 public class Card extends JFrame implements FocusListener, MouseMotionListener, MouseListener {
     //============================ Start of Card generation ============================
 
+    public void mouseDragged(MouseEvent e) {
+        int x = (int)(e.getXOnScreen() - mousePosition.getX());
+        int y = (int)(e.getYOnScreen() - mousePosition.getY());
+       
+        this.setLocation(x,y);
+    }
+
+    public void mousePressed(MouseEvent e) {
+        mousePosition.x = e.getX();
+        mousePosition.y = e.getY();
+    }
+    
+    @Override
+    public void focusLost(FocusEvent e) {
+        // TODO Auto-generated method stub
+    }
+
+//====================================================================================    
     protected String[] imagePaths; // String array template for random image generation
     
     protected int screenWidth;
     protected int screenHeight;
-
+    protected double heightPercentage; //heightPercentage Screen height percentage a card card will occupy.
+    protected double widthHeightRatio; //widthHeightRatio Card ratio of width to height
+    protected double widthRatio;
+    protected double heightRatio;
 
     /**
      * Constructor initializes the card.
@@ -44,11 +65,9 @@ public class Card extends JFrame implements FocusListener, MouseMotionListener, 
      * screen height percentage and width/height ratio.
      * 
      * @param imagePath Images' file paths.
-     * @param heightPercentage Screen height percentage a card card will occupy.
-     * @param widthHeightRatio Card ratio of width to height
      */
 
-    protected void setImage(String imagePath, double heightPercentage, double widthHeightRatio) {
+    protected void setImage(String imagePath) {
         // Load original image
         ImageIcon imageIcon = new ImageIcon(getClass().getResource(imagePath));
         Image image = imageIcon.getImage();
@@ -79,12 +98,12 @@ public class Card extends JFrame implements FocusListener, MouseMotionListener, 
      * @throws IllegalStateException When imagePaths array not initialized in subclass.
      */
 
-    protected void setRandomImage(double widthRatio, double heightRatio) {
+    protected void setRandomImage() {
         if (imagePaths == null || imagePaths.length == 0) {
             throw new IllegalStateException("Image paths not initialized in subclass.");
         } // Ensure the array is filled
         String randomImagePath = getRandomImageFromPaths(); // Randomly select an image path
-        setImage(randomImagePath, widthRatio, heightRatio); // Use setImage to display image
+        setImage(randomImagePath); // Use setImage to display image
     }
 
     // Helper method to randomly select an image from the imagePaths array
@@ -122,22 +141,6 @@ public class Card extends JFrame implements FocusListener, MouseMotionListener, 
 
 
 
-    public void mouseDragged(MouseEvent e) {
-        int x = (int)(e.getXOnScreen() - mousePosition.getX());
-        int y = (int)(e.getYOnScreen() - mousePosition.getY());
-       
-        this.setLocation(x,y);
-    }
-
-    public void mousePressed(MouseEvent e) {
-        mousePosition.x = e.getX();
-        mousePosition.y = e.getY();
-    }
-    
-    @Override
-    public void focusLost(FocusEvent e) {
-        // TODO Auto-generated method stub
-    }
 //=============================================================================
     JLabel diplayImage;
     ImageIcon image;
@@ -179,5 +182,12 @@ int w;
     @Override
     public void mouseExited(MouseEvent e) {
         // TODO Auto-generated method stub
+    }
+
+
+    @Override
+    public void focusGained(FocusEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'focusGained'");
     }
 }
