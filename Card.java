@@ -12,17 +12,19 @@ import javax.swing.JPanel;
  */
 public class Card extends JFrame implements FocusListener, MouseMotionListener, MouseListener {
     //============================ Start of Card generation ============================
-
+   
+    @Override
     public void mouseDragged(MouseEvent e) {
-        int x = (int)(e.getXOnScreen() - this.xM);
-        int y = (int)(e.getYOnScreen() - this.yM);
+        int x = (int)(e.getXOnScreen() - mousePosition.getX());
+        int y = (int)(e.getYOnScreen() - mousePosition.getY());
        
         this.setLocation(x,y);
     }
-
+    
+    @Override
     public void mousePressed(MouseEvent e) {
-        this.xM = e.getX();
-        this.yM = e.getY();
+        mousePosition.x = e.getX();
+        mousePosition.y = e.getY();
     }
     
     @Override
@@ -39,6 +41,9 @@ public class Card extends JFrame implements FocusListener, MouseMotionListener, 
     protected double widthHeightRatio; //widthHeightRatio Card ratio of width to height
     protected double widthRatio;
     protected double heightRatio;
+
+    private Point mousePosition = new Point();
+
 
     JLabel diplayImage;
     ImageIcon image;
@@ -72,6 +77,7 @@ int w;
         this.setUndecorated(true);
 
         this.addFocusListener(this);
+        this.addMouseListener(this);
         this.addMouseMotionListener(this);
     }
 
