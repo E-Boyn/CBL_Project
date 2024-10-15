@@ -1,24 +1,31 @@
-import javax.swing.SwingUtilities;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.*;
 
 public class main {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             
+            //Display player & dagger at fixed positions
             Player playerCard = new Player();
             playerCard.popCard();
-
             Dagger daggerCard = new Dagger();
             daggerCard.popCard();
 
-            //Tree treeCard = new Tree();
-            //treeCard.popCard();
+            Tree treeCard = new Tree();
+            House houseCard = new House();
+            Cave caveCard = new Cave();
+            Enemy enemyCard = new Enemy();
+            Treasure treasureCard = new Treasure();
 
-            //House houseCard = new House();
-            //houseCard.popCard(); 
+            List<Card> environmentCards = new ArrayList<>();
+            environmentCards.add(treeCard);
+            environmentCards.add(houseCard);
+            environmentCards.add(caveCard);
 
-            //Treasure treasureCard = new Treasure();
-            //treasureCard.popCard(); 
+            Card.positionCards(environmentCards, enemyCard, treasureCard, 
+                treeCard.screenWidth, treeCard.screenHeight);
 
         });
     }

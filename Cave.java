@@ -2,11 +2,11 @@ public class Cave extends Card{
     public Cave() {
         super();
         imagePaths = new String[] {
-            "/images/cave1.png",
-            "/images/cave2.png"
+            "/images/cave1.jpg",
+            "/images/cave2.jpg"
         };
         
-        setRandomImage(0.10, 0.10); //tentative percentage (NOT YET CALCULATED) 
+        setRandomImage(0.20, 0.20); //tentative percentage (NOT YET CALCULATED) 
     }
 
     @Override
