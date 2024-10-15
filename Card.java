@@ -7,8 +7,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-
 /** Test.
  * 
  */
@@ -120,13 +118,43 @@ public class Card extends JFrame implements FocusListener, MouseMotionListener, 
     protected void popCard(){
 
     }
+
+
+
+
+    public void mouseDragged(MouseEvent e) {
+        int x = (int)(e.getXOnScreen() - mousePosition.getX());
+        int y = (int)(e.getYOnScreen() - mousePosition.getY());
+       
+        this.setLocation(x,y);
+    }
+
+    public void mousePressed(MouseEvent e) {
+        mousePosition.x = e.getX();
+        mousePosition.y = e.getY();
+    }
     
-    // ============================ Not used methods ============================
     @Override
     public void focusLost(FocusEvent e) {
         // TODO Auto-generated method stub
     }
+//=============================================================================
+    JLabel diplayImage;
+    ImageIcon image;
 
+//-------------------------------
+double screenPersantage;
+int w;
+//-------------------------------
+
+    Dimension size;
+    String imagePath = "";
+    Point mousePosition = new Point(0 , 0);
+
+//Not used methods
+//========================================================================================================
+
+    
     @Override
     public void mouseMoved(MouseEvent e) {
         // TODO Auto-generated method stub
@@ -152,26 +180,4 @@ public class Card extends JFrame implements FocusListener, MouseMotionListener, 
     public void mouseExited(MouseEvent e) {
         // TODO Auto-generated method stub
     }
-
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mousePressed'");
-    }
-
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mouseDragged'");
-    }
-
-
-    @Override
-    public void focusGained(FocusEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'focusGained'");
-    }
-
 }
