@@ -17,11 +17,6 @@ public class Cave extends EnviromentCard{
     }
 
     @Override
-    public void focusLost(FocusEvent e) {
-
-    }
-
-    @Override
     protected void popCard() {
         this.setVisible(true);
     }
