@@ -73,11 +73,10 @@ int w;
      */
 
     public Card() {
+        
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.screenWidth = screenSize.width;
         this.screenHeight = screenSize.height;
-        System.out.println("Screen size: w = " + screenWidth + " h= " + screenHeight);
-        //TODO doesnt read right screen size
 
         this.setUndecorated(true);
 
