@@ -13,6 +13,28 @@ import javax.swing.JPanel;
  * 
  */
 public class Card extends JFrame implements FocusListener, MouseMotionListener, MouseListener {
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        int x = (int)(e.getXOnScreen() - mousePosition.getX());
+        int y = (int)(e.getYOnScreen() - mousePosition.getY());
+       
+        this.setLocation(x,y);
+    }
+    
+    @Override
+    public void mousePressed(MouseEvent e) {
+        mousePosition.x = e.getX();
+        mousePosition.y = e.getY();
+    }
+
+    @Override
+    public void focusGained(FocusEvent e) {
+        // TODO Auto-generated method stub
+    }
+
+    Point mousePosition = new Point(0 , 0);
+
+    
     //============================ Start of Card generation ============================
 
     protected String[] imagePaths; // String array template for random image generation
@@ -38,6 +60,8 @@ public class Card extends JFrame implements FocusListener, MouseMotionListener, 
 
         this.addFocusListener(this);
         this.addMouseMotionListener(this);
+        this.addMouseListener(this);
+
     }
 
 
@@ -152,26 +176,5 @@ public class Card extends JFrame implements FocusListener, MouseMotionListener, 
     public void mouseExited(MouseEvent e) {
         // TODO Auto-generated method stub
     }
-
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mousePressed'");
-    }
-
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mouseDragged'");
-    }
-
-
-    @Override
-    public void focusGained(FocusEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'focusGained'");
-    }
-
+    
 }
