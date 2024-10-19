@@ -7,8 +7,8 @@ public class Cave extends EnviromentCard{
         heightPercentage = 0.5;
         widthHeightRatio = 1.1852;
         imagePaths = new String[] {
-                                    "/images/cave1.jpg",
-                                    "/images/cave2.jpg"
+                                    "/images/cave1.png",
+                                    "/images/cave2.png"
                                   };
         
 

@@ -40,7 +40,7 @@ public class main {
             playerCard.popCard();
             Dagger daggerCard = new Dagger();
             daggerCard.popCard();
-
+            
 
             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
             
@@ -50,6 +50,12 @@ public class main {
             House houseCard = new House();
             Cave caveCard = new Cave();
 
+            
+            Cave caveCard2 = new Cave();
+            enemyCard.setVisible(true);
+            caveCard.setVisible(true);
+            caveCard2.setVisible(true);
+            
             List<Card> environmentCards = new ArrayList<>();
             environmentCards.add(treeCard);
             environmentCards.add(houseCard);

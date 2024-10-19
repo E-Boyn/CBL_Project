@@ -1,10 +1,10 @@
 public class Enemy extends Card {
     public Enemy() {
         super();
-        heightPercentage = 0.1111;
-        widthHeightRatio = 1.0;
+        heightPercentage = 0.2222;
+        widthHeightRatio = 1.25;
 
-        setImage("/images/enemy.jpg");
+        setImage("/images/enemy.png");
     }
 
     @Override
