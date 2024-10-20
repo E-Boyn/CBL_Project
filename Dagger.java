@@ -1,9 +1,13 @@
+import java.awt.Color;
+
 public class Dagger extends Card {
     public Dagger() {
         super();
         heightPercentage = 0.22;
         widthHeightRatio = 0.6;
         
+        color = new Color(78, 36, 247);
+        setBorder();
         setImage("/images/dagger.png");
     }
 

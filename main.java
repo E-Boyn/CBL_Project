@@ -35,36 +35,36 @@ public class main {
 */
 
 
-            //Display player & dagger at fixed positions
-            Player playerCard = new Player();
-            playerCard.popCard();
-            Dagger daggerCard = new Dagger();
-            daggerCard.popCard();
+            // //Display player & dagger at fixed positions
+            // Player playerCard = new Player();
+            // playerCard.popCard();
+            // Dagger daggerCard = new Dagger();
+            // daggerCard.popCard();
             
 
-            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            // Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
             
-            Enemy enemyCard = new Enemy();
-            Treasure treasureCard = new Treasure();
-            Tree treeCard = new Tree();
-            House houseCard = new House();
-            Cave caveCard = new Cave();
+            // Enemy enemyCard = new Enemy();
+            // Treasure treasureCard = new Treasure();
+            // Tree treeCard = new Tree();
+            // House houseCard = new House();
+            // Cave caveCard = new Cave();
 
             
-            Cave caveCard2 = new Cave();
-            enemyCard.setVisible(true);
-            caveCard.setVisible(true);
-            caveCard2.setVisible(true);
+            // Cave caveCard2 = new Cave();
+            // enemyCard.setVisible(true);
+            // caveCard.setVisible(true);
+            // caveCard2.setVisible(true);
             
-            Treasure treasure = new Treasure();
-            treasure.setVisible(true);
+            // Treasure treasure = new Treasure();
+            // treasure.setVisible(true);
 
-            List<Card> environmentCards = new ArrayList<>();
-            environmentCards.add(treeCard);
-            environmentCards.add(houseCard);
-            environmentCards.add(caveCard);
+            // List<Card> environmentCards = new ArrayList<>();
+            // environmentCards.add(treeCard);
+            // environmentCards.add(houseCard);
+            // environmentCards.add(caveCard);
 
-            Enviroment enviroment1= new Enviroment(0);
+            new Enviroment(0);     
  
 
         } );

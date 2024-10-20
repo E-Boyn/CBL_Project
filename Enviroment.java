@@ -6,13 +6,21 @@ import java.util.ArrayList;
 public class Enviroment {
 
     List<Card> environmentCards = new ArrayList<>();
-    int numOfobjects;
     Player playerCard;
     Dagger daggerCard;
     Enemy enemyCard;
     Treasure treasureCard;
+
+    int numOfobjects;
     int screenWidth;
     int screenHeight;
+    boolean enemyFlag= true;
+    boolean treasureFlag = false;
+
+    private int randomNumber(int num){
+        return (int) ((Math.random() * (num - 1)) + 1);
+    }
+
 
     Enviroment(int round){
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -23,13 +31,28 @@ public class Enviroment {
             numOfobjects = 4;
             spawnDaggerPlayer();
             spawnCards();
-           
+            enemyCard = new Enemy();
+            positionCards();
+        } else if(round == 1){
+            numOfobjects = 6;
+            spawnCards();
+            enemyCard = new Enemy();
+            positionCards();
+        } else{
+            numOfobjects = randomNumber(20);
+            spawnCards();
+            treasureCard = new Treasure();
+            enemyFlag = false;
+            treasureFlag = true;
+            positionCards();
         } 
     }
 
 private void spawnDaggerPlayer(){
     playerCard = new Player();
+    playerCard.popCard();
     daggerCard = new Dagger();
+    daggerCard.popCard();
 }
     
     private void spawnCards(){
@@ -51,11 +74,9 @@ private void spawnDaggerPlayer(){
             for(int i = 0; i < numOfCave ; i++){
                 environmentCards.add(new Cave());
             }
+
     }
     
-    private int randomNumber(int num){
-        return (int) ((Math.random() * (num - 1)) + 1);
-    }
 
     void positionCards() {
         
@@ -67,8 +88,8 @@ private void spawnDaggerPlayer(){
         for (Card environmentCard : environmentCards) {
             // Use randomPosition() to get random coordinates
             Point randomPos = environmentCard.randomPosition(
-                screenWidth - environmentCard.getWidth(), 
-                screenHeight - safeZoneHeightOffset - environmentCard.getHeight()
+                                                screenWidth - environmentCard.getWidth(), 
+                                                        screenHeight - safeZoneHeightOffset - environmentCard.getHeight()
                 );
 
             // Set the card's location and track its bounds -- to later hide emeny & treasure cards
@@ -80,10 +101,14 @@ private void spawnDaggerPlayer(){
 
         // Hide enemy and treasure cards behind or between environment cards 
         // TODO !!!!!!! make it so that it's JUST behind. Not between. Between unguaranteed hiding
-        placeCardBehindEnvironment(rand, enemyCard, environmentBounds);
-        enemyCard.setVisible(true);
-        placeCardBehindEnvironment(rand, treasureCard, environmentBounds);
-        treasureCard.setVisible(true);
+        if(enemyFlag){
+             placeCardBehindEnvironment(rand, enemyCard, environmentBounds);
+             enemyCard.setVisible(true);
+        }
+        if(treasureFlag){
+             placeCardBehindEnvironment(rand, treasureCard, environmentBounds);
+             treasureCard.setVisible(true);
+        }
     }
 
     // Helper method to place a card behind environment cards

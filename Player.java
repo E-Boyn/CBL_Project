@@ -1,9 +1,13 @@
+import java.awt.Color;
+
 public class Player extends Card {
     public Player() {
         super();
         heightPercentage = 0.1111;
         widthHeightRatio = 1.0;
 
+        color = new Color(78, 36, 247);
+        setBorder();
         setImage("/images/player.png");
     }
 

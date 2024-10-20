@@ -3,6 +3,8 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -49,10 +51,10 @@ public class Card extends JFrame implements FocusListener, MouseMotionListener, 
     private Point mousePosition = new Point();
 
     protected boolean isActivated;
-    protected boolean firstActivated = true;
     JLabel diplayImage;
     ImageIcon image;
 
+    protected Color color = new Color(23, 244, 106);
 //-------------------------------
 double screenPersantage;
 int w;
@@ -78,13 +80,16 @@ int w;
         this.screenWidth = screenSize.width;
         this.screenHeight = screenSize.height;
 
-        this.setUndecorated(true);
+        setBorder();
 
+        this.setUndecorated(true);
         this.addFocusListener(this);
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
     }
-
+protected void setBorder(){
+    this.getRootPane().setBorder(BorderFactory.createDashedBorder(color, 2, 5, 1, false));
+}
 
     /**
      * Sets fixed image for the card and scales it according to

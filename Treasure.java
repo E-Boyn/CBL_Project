@@ -1,11 +1,16 @@
 import javax.swing.*;
+
+import java.awt.Color;
 import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.WindowEvent;
 public class Treasure extends Card{
 
     public Treasure() {
         super();
+
+        
+        color = new Color(255, 238, 0);
+        setBorder();
         heightPercentage = 0.2222;
         widthHeightRatio = 1.25;
 
@@ -22,7 +27,7 @@ public class Treasure extends Card{
     public void focusGained(FocusEvent e) {
        isActivated = true;
 
-        Timer timer = new Timer(2000, event -> {
+        Timer timer = new Timer(1000, event -> {
 
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
