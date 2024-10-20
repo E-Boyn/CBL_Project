@@ -56,6 +56,9 @@ public class main {
             caveCard.setVisible(true);
             caveCard2.setVisible(true);
             
+            Treasure treasure = new Treasure();
+            treasure.setVisible(true);
+
             List<Card> environmentCards = new ArrayList<>();
             environmentCards.add(treeCard);
             environmentCards.add(houseCard);
