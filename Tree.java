@@ -1,4 +1,4 @@
-public class Tree extends EnviromentCard {
+public class Tree extends EnvironmentCard {
     public Tree() {
         super();
         heightPercentage = 0.6481;

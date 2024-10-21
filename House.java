@@ -1,4 +1,4 @@
-public class House extends EnviromentCard{
+public class House extends EnvironmentCard{
     public House() {
         super();
         heightPercentage = 0.5;

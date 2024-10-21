@@ -1,10 +1,9 @@
-
 import java.awt.*;
 
-public class ScreenSIze {
-    
+public class ScreenSize {
     private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    public Dimension getScreenSize(){
-    return screenSize;
-}
+    
+    public Dimension getScreenSize() {
+        return screenSize;
+    }
 }
