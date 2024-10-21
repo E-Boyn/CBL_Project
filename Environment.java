@@ -83,53 +83,49 @@ public class Environment {
         Random rand = new Random();
         List<Rectangle> environmentBounds = new ArrayList<>();
         int safeZoneHeightOffset = 150;  // Place cards ABOVE Player/Dagger
-    
-        // Generate environment cards' positions first, but not display them yet
+
+        // Generate the environment cards' positions not display them yet
         for (Card environmentCard : environmentCards) {
             // Use randomPosition() to get random coordinates
             Point randomPos = environmentCard.randomPosition(
                 screenWidth - environmentCard.getWidth(),
                 screenHeight - safeZoneHeightOffset - environmentCard.getHeight()
             );
-    
-            // Track bounds of each environment card for later use
+
+            // Track the bounds of each environment card
             environmentBounds.add(new Rectangle(randomPos.x, randomPos.y,
                 environmentCard.getWidth(), environmentCard.getHeight()));
             
-            // Temporarily store position but don't make the environment card visible yet
+            // Store position bounds but not make the environment card visible yet
             environmentCard.setLocation(randomPos.x, randomPos.y);
         }
-    
-        // Pick random environment card to hide the enemy card inside
-        // Using its top-left point to generate enemy so it can be covered
-        if (enemyFlag) {
+
+        // Enemy card (if exist) generated in the top-left corner of a random environment card
+        if (enemyCard != null) {
             Rectangle chosenEnv = environmentBounds.get(rand.nextInt(environmentBounds.size()));
-    
-            // Place enemy card at the top-left corner of the chosen environment card
             Point enemyPos = getTopLeftPointInside(chosenEnv);
             enemyCard.setLocation(enemyPos.x, enemyPos.y);
             enemyCard.setVisible(true);  // Display the enemy card, but it will be covered later
         }
-    
-        // Make environment cards visible (they will cover enemy card)
-        for (Card environmentCard : environmentCards) {
-            environmentCard.setVisible(true);  // Now show the environment cards to cover the enemy
-        }
-    
-        // Use later ---- Handle treasure similarly
-        if (treasureFlag) {
+
+        // Treasure card (if exist) generated in the top-left corner of a random environment card
+        if (treasureCard != null) {
             Rectangle chosenEnv = environmentBounds.get(rand.nextInt(environmentBounds.size()));
             Point treasurePos = getTopLeftPointInside(chosenEnv);
             treasureCard.setLocation(treasurePos.x, treasurePos.y);
             treasureCard.setVisible(true);  // Make treasure visible but behind environment
         }
+
+        // Make the environment cards visible (they will cover enemy and treasure cards)
+        for (Card environmentCard : environmentCards) {
+            environmentCard.setVisible(true);
+        }
     }
-    
+
 
     // Helper method to get the top-left point of a given rectangle (environment card bounds)
     private Point getTopLeftPointInside(Rectangle rect) {
         return new Point(rect.x, rect.y);
     }
 
-    
 }
