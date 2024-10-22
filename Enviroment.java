@@ -7,6 +7,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 public class Enviroment {
 
     List<Card> environmentCards = new ArrayList<>();
@@ -129,23 +141,23 @@ private void spawnDaggerPlayer(){
     }
 
 
-    // public void setUpDaggerListener (){ 
+    public void setUpDaggerListener (){ 
         
-    //     daggerCard.addFocusListener(new FocusAdapter() {
-    //     @Override
-    //     public void focusGained(FocusEvent e) {
-    //         // Action to perform when the frame gains focus
-    //         System.out.println("The frame is now focused. Action triggered!");
-    //     }
+        daggerCard.addFocusListener(new FocusAdapter() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            // Action to perform when the frame gains focus
+            System.out.println("The frame is now focused. Action triggered!");
+        }
 
-    //     @Override
-    //     public void focusLost(FocusEvent e) {
-    //         // Optional: Action to perform when the frame loses focus
-    //         System.out.println("The frame lost focus.");
-    //     }
-    // });
+        @Override
+        public void focusLost(FocusEvent e) {
+            // Optional: Action to perform when the frame loses focus
+            System.out.println("The frame lost focus.");
+        }
+    });
             
-    //     }
+        }
     
 
 
