@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.WindowEvent;
-public class Treasure extends Card{
+public class Treasure extends CardWithFocusListener{
 
     public Treasure() {
         super();

@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 /** Test.
  * 
  */
-public class Card extends JFrame implements FocusListener, MouseMotionListener, MouseListener {
+public class Card extends JFrame implements  MouseMotionListener, MouseListener {
     //============================ Start of Card generation ============================
    
     @Override
@@ -29,15 +29,6 @@ public class Card extends JFrame implements FocusListener, MouseMotionListener, 
         mousePosition.y = e.getY();
     }
     
-    @Override
-    public void focusLost(FocusEvent e) {
-        isActivated = false;
-    }
-
-    @Override
-    public void focusGained(FocusEvent e) {
-       isActivated = true;
-    }
 //====================================================================================    
     protected String[] imagePaths; // String array template for random image generation
     
@@ -83,7 +74,6 @@ int w;
         setBorder();
 
         this.setUndecorated(true);
-        this.addFocusListener(this);
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
     }
