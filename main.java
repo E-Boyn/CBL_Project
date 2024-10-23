@@ -68,8 +68,13 @@ public class main {
             //Display player & dagger at fixed positions
             Player player = new Player();
             Dagger dagger = new Dagger();
-            new Enviroment(0, player, dagger);     
- 
+
+            new Enviroment(0, player, dagger);
+
+            Tree tree = new Tree();
+            Enviroment first = new Enviroment(tree);   
+
+            Enviroment second = new Enviroment(tree);     
 
         } );
     }

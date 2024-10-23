@@ -1,14 +1,22 @@
 import java.awt.Color;
+import java.awt.event.*;
 
-public class Dagger extends Card {
+public class Dagger extends CardWithFocusListener {
     public Dagger() {
         super();
+        isDagger = true;
         heightPercentage = 0.22;
         widthHeightRatio = 0.6;
         
         color = new Color(78, 36, 247);
         setBorder();
         setImage("/images/dagger.png");
+    }
+
+    @Override
+    public void focusGained(FocusEvent e) {
+       isActivated = true;
+       notifyListeners(this);
     }
 
     @Override

@@ -42,6 +42,7 @@ public class Card extends JFrame implements  MouseMotionListener, MouseListener 
     private Point mousePosition = new Point();
 
     protected boolean isActivated;
+    public boolean isDagger= false;
     JLabel diplayImage;
     ImageIcon image;
 
@@ -77,9 +78,21 @@ int w;
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
     }
+
+
+
+
 protected void setBorder(){
     this.getRootPane().setBorder(BorderFactory.createDashedBorder(color, 2, 5, 1, false));
 }
+
+
+
+public void slay(){
+    isActivated = false;
+    this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+}
+
 
     /**
      * Sets fixed image for the card and scales it according to

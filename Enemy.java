@@ -17,9 +17,9 @@ public class Enemy extends CardWithFocusListener {
         setImage("/images/enemyRED.png");
         
     }
+    @Override
     public void slay(){
-        isActivated = false;
-        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+        notifyListeners(this);
     }
 
     

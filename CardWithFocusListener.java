@@ -14,6 +14,8 @@ public class CardWithFocusListener extends Card implements FocusListener{
        isActivated = true;
        notifyListeners();
     }
+
+    
     protected CardWithFocusListener(){
         super();
         this.addFocusListener(this);
@@ -31,9 +33,25 @@ public class CardWithFocusListener extends Card implements FocusListener{
     }
 
     // Notify all registered listeners about the change
-    private void notifyListeners() {
+    protected void notifyListeners() {
+
         for (FocusChaingedListener listener : listeners) {
             listener.somethingGotFocused(this);
+        }
+    }
+    protected void notifyListeners(Card card) {
+        if(card instanceof Dagger){
+           for (FocusChaingedListener listener : listeners) {
+               listener.daggerGotFocused(card);}
+        
+        } else if(card instanceof Enemy){
+            
+           for (FocusChaingedListener listener : listeners) {
+            listener.enemySlain(card);}
+        } else {
+
+           for (FocusChaingedListener listener : listeners) {
+            listener.somethingGotFocused(card);}
         }
     }
     

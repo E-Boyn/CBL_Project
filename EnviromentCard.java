@@ -6,9 +6,4 @@ public class EnviromentCard extends CardWithFocusListener{
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
         
     }
-
-    @Override
-    public void focusGained(FocusEvent e) {
-       isActivated = true;
-    }
 }

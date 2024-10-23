@@ -20,7 +20,26 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 public class Enviroment implements FocusChaingedListener{
 
-    List<EnviromentCard> environmentCards = new ArrayList<>();
+
+    @Override
+    public void somethingGotFocused(Card card) {
+        
+        System.out.println("Focus Chainged");
+    }
+
+    @Override
+    public void daggerGotFocused(Card card){
+        //check the history list - if enemy last focused thigger slay
+            
+        enemyCard.slay();
+    }
+    
+    @Override
+    public void enemySlain(Card card) {
+        System.out.println("NOO SLIMY");
+    }
+//===========================================================================================
+    public List<EnviromentCard> environmentCards = new ArrayList<>();
     List<Card> lastActive = new ArrayList<>(2);
     int indexBanner = 0;
     Player playerCard;
@@ -39,13 +58,17 @@ public class Enviroment implements FocusChaingedListener{
         return (int) ((Math.random() * (num - 1)) + 1);
     }
 
+    Enviroment(CardWithFocusListener card){
+        card.addIsActiveListener(this);
+        card.setVisible(true);;
+    }
 
     Enviroment(int round, Player player, Dagger dagger){
 
         this.playerCard = player;
         this.daggerCard = dagger;
-
         this.round = round;
+
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.screenWidth = screenSize.width;
         this.screenHeight = screenSize.height;
@@ -55,6 +78,13 @@ public class Enviroment implements FocusChaingedListener{
             spawnDaggerPlayer();
             spawnCards();
             enemyCard = new Enemy();
+
+        for (EnviromentCard enviromentCard : environmentCards) {
+            enviromentCard.addIsActiveListener(this);
+        }
+
+        daggerCard.addIsActiveListener(this);
+        enemyCard.addIsActiveListener(this);
             positionCards();
         } else if(round == 1){
             numOfobjects = 6;
@@ -151,10 +181,7 @@ public void focusChanged(Card card){
 }
 
 
-@Override
-public void somethingGotFocused(Card card) {
-    System.err.println("Focus Chainged");
-}
+
 
 
 
