@@ -1,16 +1,9 @@
-import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 public class CardWithFocusListener extends Card implements FocusListener{
-    
+    private List<FocusChaingedListener> listeners = new ArrayList<>();
+
     @Override
     public void focusLost(FocusEvent e) {
         isActivated = false;
@@ -19,10 +12,29 @@ public class CardWithFocusListener extends Card implements FocusListener{
     @Override
     public void focusGained(FocusEvent e) {
        isActivated = true;
+       notifyListeners();
     }
     protected CardWithFocusListener(){
         super();
         this.addFocusListener(this);
     }
 
+
+     // Register a listener
+     public void addIsActiveListener(FocusChaingedListener listener) {
+        listeners.add(listener);
+    }
+
+    // Remove a listener
+    public void removeIsActiveListener(FocusChaingedListener listener) {
+        listeners.remove(listener);
+    }
+
+    // Notify all registered listeners about the change
+    private void notifyListeners() {
+        for (FocusChaingedListener listener : listeners) {
+            listener.somethingGotFocused(this);
+        }
+    }
+    
 }

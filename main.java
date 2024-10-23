@@ -64,7 +64,11 @@ public class main {
             // environmentCards.add(houseCard);
             // environmentCards.add(caveCard);
 
-            new Enviroment(0);     
+            
+            //Display player & dagger at fixed positions
+            Player player = new Player();
+            Dagger dagger = new Dagger();
+            new Enviroment(0, player, dagger);     
  
 
         } );

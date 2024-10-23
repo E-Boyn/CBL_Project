@@ -18,9 +18,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-public class Enviroment {
+public class Enviroment implements FocusChaingedListener{
 
-    List<Card> environmentCards = new ArrayList<>();
+    List<EnviromentCard> environmentCards = new ArrayList<>();
+    List<Card> lastActive = new ArrayList<>(2);
+    int indexBanner = 0;
     Player playerCard;
     Dagger daggerCard;
     Enemy enemyCard;
@@ -38,7 +40,10 @@ public class Enviroment {
     }
 
 
-    Enviroment(int round){
+    Enviroment(int round, Player player, Dagger dagger){
+
+        this.playerCard = player;
+        this.daggerCard = dagger;
 
         this.round = round;
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -139,24 +144,60 @@ private void spawnDaggerPlayer(){
         card.setLocation(x, y);
     }
 
+    //EXPERIMENTATION:
 
-    public void setUpDaggerListener (){ 
+public void focusChanged(Card card){
+
+}
+
+
+@Override
+public void somethingGotFocused(Card card) {
+    System.err.println("Focus Chainged");
+}
+
+
+
+    // public void setUpListener (Card card){ 
         
-        daggerCard.addFocusListener(new FocusAdapter() {
-        @Override
-        public void focusGained(FocusEvent e) {
-            // Action to perform when the frame gains focus
-            System.out.println("The frame is now focused. Action triggered!");
-        }
+    //     if(card instanceof Dagger){
+    //            daggerCard.addFocusListener(new FocusAdapter() {
+    //            @Override
+    //            public void focusGained(FocusEvent e) {
+    //                if(enemyCard.isActivated){
+    //                    enemyCard.slay();
+    //                    new Enviroment(round++, playerCard, daggerCard);
+    //                }
+    //            }
+    //            @Override
+    //            public void focusLost(FocusEvent e) {
+    //                // Optional: Action to perform when the frame loses focus
+    //                System.out.println("The frame lost focus.");
+    //            } });
+    //     }
 
-        @Override
-        public void focusLost(FocusEvent e) {
-            // Optional: Action to perform when the frame loses focus
-            System.out.println("The frame lost focus.");
-        }
-    });
+    //     if(card instanceof EnviromentCard){
+    //         card.addFocusListener(new FocusAdapter() {
+    //             @Override
+    //             public void focusLost(FocusEvent e) {
+    //                 if(!daggerCard.isActivated){
+    //                 card.isActivated = false;
+    //                 card.dispatchEvent(new WindowEvent(card, WindowEvent.WINDOW_CLOSING));
+    //                 }
+    //             }
             
-        }
+    //             @Override
+    //             public void focusGained(FocusEvent e) {
+    //                card.isActivated = true;
+    //             }
+
+                 
+    //         });
+            
+
+
+    //     }
+    //     }
     
 
 
