@@ -1,8 +1,8 @@
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
-public class CardWithFocusListener extends Card implements FocusListener{
 
+public class CardWithFocusListener extends Card implements FocusListener{
 
     @Override
     public void focusLost(FocusEvent e) {
@@ -11,8 +11,8 @@ public class CardWithFocusListener extends Card implements FocusListener{
 
     @Override
     public void focusGained(FocusEvent e) {
-       isActivated = true;
-       notifyIsActiveListeners();
+        isActivated = true;
+        notifyIsActiveListeners();
     }
 
     @Override
@@ -20,10 +20,11 @@ public class CardWithFocusListener extends Card implements FocusListener{
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
         notifySlayListeners(this);
     }
-//======================================================================    
 
-private List<FocusChaingedListener> focusListeners = new ArrayList<>();
-private List<SlayListener> slayListeners = new ArrayList<>();
+    //======================================================================    
+
+    private List<FocusChangedListener> focusListeners = new ArrayList<>();
+    private List<SlayListener> slayListeners = new ArrayList<>();
 
 
     protected CardWithFocusListener(){
@@ -32,19 +33,19 @@ private List<SlayListener> slayListeners = new ArrayList<>();
     }
 
 
-     // Register a listener
-     public void addIsActiveListener(FocusChaingedListener listener) {
+    // Register a listener
+    public void addIsActiveListener(FocusChangedListener listener) {
         focusListeners.add(listener);
     }
 
     // Remove a listener
-    public void removeIsActiveListener(FocusChaingedListener listener) {
+    public void removeIsActiveListener(FocusChangedListener listener) {
         focusListeners.remove(listener);
     }
 
 
-     // Register a Slay listener
-     public void addSlayListener(SlayListener listener) {
+    // Register a Slay listener
+    public void addSlayListener(SlayListener listener) {
         slayListeners.add(listener);
     }
 
@@ -54,21 +55,20 @@ private List<SlayListener> slayListeners = new ArrayList<>();
     }
 
 
-
-
     // Notify all registered isActive listeners about this card getting focused
     protected void notifyIsActiveListeners() {
 
-        if(this instanceof Dagger){
-            for (FocusChaingedListener listener : focusListeners) {
-                listener.daggerGotFocused(this);}
-         
-         } else if(this instanceof EnviromentCard){
-            for (FocusChaingedListener listener : focusListeners) {
-             listener.enviromentClosed(this); //TODO DOOUBLE CHECK THIS PLEASE I'M SO TIRED
+        if (this instanceof Dagger) {
+            for (FocusChangedListener listener : focusListeners) {
+                listener.daggerGotFocused(this);
             }
-        } else{
-            for (FocusChaingedListener listener : focusListeners) {
+         
+        } else if (this instanceof EnvironmentCard) {
+            for (FocusChangedListener listener : focusListeners) {
+                listener.environmentClosed(this); //TODO DOOUBLE CHECK THIS PLEASE I'M SO TIRED
+            }
+        } else {
+            for (FocusChangedListener listener : focusListeners) {
                 listener.somethingGotFocused(this);
             }
         }
@@ -77,13 +77,15 @@ private List<SlayListener> slayListeners = new ArrayList<>();
 
     protected void notifySlayListeners(Card card) {
 
-        if(card instanceof EnviromentCard)   {
+        if (card instanceof EnvironmentCard) {
             for (SlayListener listener : slayListeners) {
-             listener.environmentSlain(card);}
+                listener.environmentSlain(card);
+            }
 
-        } else if(card instanceof Enemy)   {
-          for (SlayListener listener : slayListeners) {
-           listener.enemySlain(card);}
+        } else if (card instanceof Enemy) {
+            for (SlayListener listener : slayListeners) {
+                listener.enemySlain(card);
+            }
         }
     }
 }

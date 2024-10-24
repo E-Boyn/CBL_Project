@@ -1,26 +1,18 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-/** Test.
- * 
- */
-public class Card extends JFrame implements  MouseMotionListener, MouseListener {
-    //============================ Start of Card generation ============================
-   
+
+public class Card extends JFrame implements MouseMotionListener, MouseListener {
     @Override
     public void mouseDragged(MouseEvent e) {
-        int x = (int)(e.getXOnScreen() - mousePosition.getX());
-        int y = (int)(e.getYOnScreen() - mousePosition.getY());
+        int x = (int) (e.getXOnScreen() - mousePosition.getX());
+        int y = (int) (e.getYOnScreen() - mousePosition.getY());
        
-        this.setLocation(x,y);
+        this.setLocation(x, y);
     }
     
     @Override
@@ -29,31 +21,25 @@ public class Card extends JFrame implements  MouseMotionListener, MouseListener 
         mousePosition.y = e.getY();
     }
     
-//====================================================================================    
     protected String[] imagePaths; // String array template for random image generation
-    
     protected int screenWidth;
     protected int screenHeight;
-    protected double heightPercentage; //heightPercentage Screen height percentage a card card will occupy.
-    protected double widthHeightRatio; //widthHeightRatio Card ratio of width to height
+    protected double heightPercentage; // Screen height percentage a card will occupy.
+    protected double widthHeightRatio; // Card ratio of width to height
     protected double widthRatio;
     protected double heightRatio;
 
     private Point mousePosition = new Point();
 
     protected boolean isActivated;
-    public boolean isDagger= false;
+    public boolean isDagger = false;
     JLabel diplayImage;
+
     ImageIcon image;
 
     protected Color color = new Color(23, 244, 106);
-//-------------------------------
-double screenPersantage;
-int w;
-//-------------------------------
 
     Dimension size;
-    String imagePath = "";
     int xM;
     int yM;
 
@@ -80,18 +66,15 @@ int w;
     }
 
 
+    protected void setBorder() {
+        this.getRootPane().setBorder(BorderFactory.createDashedBorder(color, 2, 5, 1, false));
+    }
 
 
-protected void setBorder(){
-    this.getRootPane().setBorder(BorderFactory.createDashedBorder(color, 2, 5, 1, false));
-}
-
-
-
-public void slay(){
-    isActivated = false;
-    this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-}
+    public void slay() {
+        isActivated = false;
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+    }
 
 
     /**
@@ -108,7 +91,7 @@ public void slay(){
         
         // Calculate height based on screen size and percentage
         int cardHeight = (int) (this.screenHeight * this.heightPercentage);
-        int cardWidth = (int) (cardHeight *this.widthHeightRatio);
+        int cardWidth = (int) (cardHeight * this.widthHeightRatio);
 
         // Resize image to fit card
         Image scaledImage = image.getScaledInstance(cardWidth, cardHeight, Image.SCALE_SMOOTH);
@@ -127,8 +110,6 @@ public void slay(){
      * Randomly selects and sets an image from the image paths array.
      * Method for subclasses with randomized image generation (Tree, House, Cave).
      * 
-     * @param widthRatio Card dimension's width/height ratio.
-     * @param heightRatio Height percentage relative to screen size.
      * @throws IllegalStateException When imagePaths array not initialized in subclass.
      */
 
@@ -167,15 +148,11 @@ public void slay(){
      * Displays the card. 
      * To be overridden by subclasses to handle specifics of card displaying in the game.
      */
-
     protected void popCard(){
     }
-//=============================================================================
 
 
-//Not used methods
-//========================================================================================================
-
+    // =================== Not used methods ===================
     
     @Override
     public void mouseMoved(MouseEvent e) {

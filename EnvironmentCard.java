@@ -1,5 +1,6 @@
 import java.awt.event.*;
-public class EnviromentCard extends CardWithFocusListener{
+
+public class EnvironmentCard extends CardWithFocusListener{
     @Override
     public void focusLost(FocusEvent e) {
         isActivated = false;
