@@ -16,7 +16,7 @@ public class Dagger extends CardWithFocusListener {
     @Override
     public void focusGained(FocusEvent e) {
        isActivated = true;
-       notifyListeners(this);
+       notifyIsActiveListeners();
     }
 
     @Override

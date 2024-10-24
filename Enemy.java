@@ -17,10 +17,6 @@ public class Enemy extends CardWithFocusListener {
         setImage("/images/enemyRED.png");
         
     }
-    @Override
-    public void slay(){
-        notifyListeners(this);
-    }
 
     
     @Override

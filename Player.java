@@ -1,16 +1,17 @@
 import java.awt.Color;
 
-public class Player extends Card {
+public class Player extends CardWithFocusListener {
     public Player() {
         super();
         heightPercentage = 0.1111;
         widthHeightRatio = 1.0;
-
+        this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
         color = new Color(78, 36, 247);
         setBorder();
         setImage("/images/player.png");
     }
 
+    
     @Override
     protected void popCard() {
         int taskbarHeightOffset = 50;  // Adjustable -- should not be covered by taskbar

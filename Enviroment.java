@@ -2,45 +2,54 @@
 import java.util.List;
 import java.util.Random;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-public class Enviroment implements FocusChaingedListener{
+public class Enviroment implements FocusChaingedListener, SlayListener{
 
 
     @Override
     public void somethingGotFocused(Card card) {
-        
-        System.out.println("Focus Chainged");
+        System.out.println("CARD ADDED");
+        history.add(card);
     }
 
     @Override
-    public void daggerGotFocused(Card card){
+    public void daggerGotFocused(Card card) {
+        
+        System.out.println("Dagger focused");
+        int index = history.size()-1;
         //check the history list - if enemy last focused thigger slay
-            
-        enemyCard.slay();
+        history.get(index).slay();
     }
+
     
     @Override
-    public void enemySlain(Card card) {
-        System.out.println("NOO SLIMY");
+    public void enviromentClosed(Card card) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'enviromentClosed'");
     }
+
+    
+    @Override
+    public void environmentSlain(Card card) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'environmentSlain'");
+    }
+
+    @Override
+    public void enemySlain(Card card) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'enemySlain'");
+    }
+
+    @Override
+    public void playerSlain(Card card) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'playerSlain'");
+    }
+
 //===========================================================================================
     public List<EnviromentCard> environmentCards = new ArrayList<>();
-    List<Card> lastActive = new ArrayList<>(2);
+    List<Card> history = new ArrayList<>();
     int indexBanner = 0;
     Player playerCard;
     Dagger daggerCard;
@@ -56,11 +65,6 @@ public class Enviroment implements FocusChaingedListener{
 
     private int randomNumber(int num){
         return (int) ((Math.random() * (num - 1)) + 1);
-    }
-
-    Enviroment(CardWithFocusListener card){
-        card.addIsActiveListener(this);
-        card.setVisible(true);;
     }
 
     Enviroment(int round, Player player, Dagger dagger){
@@ -79,12 +83,16 @@ public class Enviroment implements FocusChaingedListener{
             spawnCards();
             enemyCard = new Enemy();
 
+        //add listeners
         for (EnviromentCard enviromentCard : environmentCards) {
             enviromentCard.addIsActiveListener(this);
         }
 
+        playerCard.addIsActiveListener(this);
         daggerCard.addIsActiveListener(this);
         enemyCard.addIsActiveListener(this);
+        //end of add listeners
+
             positionCards();
         } else if(round == 1){
             numOfobjects = 6;
@@ -179,6 +187,7 @@ private void spawnDaggerPlayer(){
 public void focusChanged(Card card){
 
 }
+
 
 
 

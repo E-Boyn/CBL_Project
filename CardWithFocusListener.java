@@ -2,7 +2,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
 public class CardWithFocusListener extends Card implements FocusListener{
-    private List<FocusChaingedListener> listeners = new ArrayList<>();
+
 
     @Override
     public void focusLost(FocusEvent e) {
@@ -12,10 +12,20 @@ public class CardWithFocusListener extends Card implements FocusListener{
     @Override
     public void focusGained(FocusEvent e) {
        isActivated = true;
-       notifyListeners();
+       notifyIsActiveListeners();
     }
 
-    
+    @Override
+    public void slay(){
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+        notifySlayListeners(this);
+    }
+//======================================================================    
+
+private List<FocusChaingedListener> focusListeners = new ArrayList<>();
+private List<SlayListener> slayListeners = new ArrayList<>();
+
+
     protected CardWithFocusListener(){
         super();
         this.addFocusListener(this);
@@ -24,35 +34,56 @@ public class CardWithFocusListener extends Card implements FocusListener{
 
      // Register a listener
      public void addIsActiveListener(FocusChaingedListener listener) {
-        listeners.add(listener);
+        focusListeners.add(listener);
     }
 
     // Remove a listener
     public void removeIsActiveListener(FocusChaingedListener listener) {
-        listeners.remove(listener);
+        focusListeners.remove(listener);
     }
 
-    // Notify all registered listeners about the change
-    protected void notifyListeners() {
 
-        for (FocusChaingedListener listener : listeners) {
-            listener.somethingGotFocused(this);
-        }
+     // Register a Slay listener
+     public void addSlayListener(SlayListener listener) {
+        slayListeners.add(listener);
     }
-    protected void notifyListeners(Card card) {
-        if(card instanceof Dagger){
-           for (FocusChaingedListener listener : listeners) {
-               listener.daggerGotFocused(card);}
-        
-        } else if(card instanceof Enemy){
-            
-           for (FocusChaingedListener listener : listeners) {
-            listener.enemySlain(card);}
-        } else {
 
-           for (FocusChaingedListener listener : listeners) {
-            listener.somethingGotFocused(card);}
+    // Remove a Slay listener
+    public void removeSlayListener(SlayListener listener) {
+        slayListeners.remove(listener);
+    }
+
+
+
+
+    // Notify all registered isActive listeners about this card getting focused
+    protected void notifyIsActiveListeners() {
+
+        if(this instanceof Dagger){
+            for (FocusChaingedListener listener : focusListeners) {
+                listener.daggerGotFocused(this);}
+         
+         } else if(this instanceof EnviromentCard){
+            for (FocusChaingedListener listener : focusListeners) {
+             listener.enviromentClosed(this); //TODO DOOUBLE CHECK THIS PLEASE I'M SO TIRED
+            }
+        } else{
+            for (FocusChaingedListener listener : focusListeners) {
+                listener.somethingGotFocused(this);
+            }
         }
     }
     
+
+    protected void notifySlayListeners(Card card) {
+
+        if(card instanceof EnviromentCard)   {
+            for (SlayListener listener : slayListeners) {
+             listener.environmentSlain(card);}
+
+        } else if(card instanceof Enemy)   {
+          for (SlayListener listener : slayListeners) {
+           listener.enemySlain(card);}
+        }
+    }
 }
