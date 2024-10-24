@@ -8,7 +8,8 @@ public class main {
             Player player = new Player();
             Dagger dagger = new Dagger();
 
-            new Environment(0, player, dagger);
+            Environment gameEnvironment = new Environment(0, player, dagger);  // Start with round 0
+            gameEnvironment.startGame();
         } 
         );
     }

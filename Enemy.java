@@ -6,16 +6,13 @@ public class Enemy extends CardWithFocusListener {
     public Enemy() {
         super();
 
-        
-        this.getContentPane().setBackground( color.BLACK );
-        color = new Color(255,0,0);
+        this.getContentPane().setBackground(color.BLACK);
+        color = new Color(255, 0, 0);
         setBorder();
         heightPercentage = 0.2222;
         widthHeightRatio = 1.25;
 
-
         setImage("/images/enemyRED.png");
-        
     }
 
     

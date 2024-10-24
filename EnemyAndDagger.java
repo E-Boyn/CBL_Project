@@ -5,7 +5,6 @@ public class EnemyAndDagger{
     Enemy enemy;
     Dagger dagger;
     
-    public EnemyAndDagger(){
-
+    public EnemyAndDagger() {
     }
 }

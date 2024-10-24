@@ -16,7 +16,7 @@ public class CardWithFocusListener extends Card implements FocusListener{
     }
 
     @Override
-    public void slay(){
+    public void slay() {
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
         notifySlayListeners(this);
     }
@@ -27,7 +27,7 @@ public class CardWithFocusListener extends Card implements FocusListener{
     private List<SlayListener> slayListeners = new ArrayList<>();
 
 
-    protected CardWithFocusListener(){
+    protected CardWithFocusListener() {
         super();
         this.addFocusListener(this);
     }
@@ -42,7 +42,6 @@ public class CardWithFocusListener extends Card implements FocusListener{
     public void removeIsActiveListener(FocusChangedListener listener) {
         focusListeners.remove(listener);
     }
-
 
     // Register a Slay listener
     public void addSlayListener(SlayListener listener) {
