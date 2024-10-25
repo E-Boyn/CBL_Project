@@ -1,10 +1,12 @@
 import java.awt.Color;
-import java.awt.event.FocusEvent;
-import java.awt.event.WindowEvent;
-import javax.swing.*;
 
-public class Treasure extends CardWithFocusListener{
+/** Represents Treasure card in the game found in the final round.
+ * Game ends when the treasure is focused.
+ */
+public class Treasure extends CardWithFocusListener {
 
+    /** Constructs Treasure card with specific dimensions, color, and image.
+     */
     public Treasure() {
         super();
 
@@ -17,24 +19,9 @@ public class Treasure extends CardWithFocusListener{
         setImage("/images/treasure.png");
     }
 
+    // Displays card on screen
     @Override
     protected void popCard() {
         this.setVisible(true);
     }
-    
-    //Program ends after 2 seconds of the treasure card gaining focus
-    // @Override
-    // public void focusGained(FocusEvent e) {
-    //     isActivated = true;
-
-        // Timer timer = new Timer(1000, event -> {
-
-        //     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        //     this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-
-        //     }
-        //     );
-        
-        // timer.start();
-    // }
 }

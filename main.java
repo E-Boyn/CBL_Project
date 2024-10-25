@@ -1,15 +1,16 @@
-import javax.swing.*;
+import javax.swing.SwingUtilities;
 
-public class main {
+/** The main entry point for the game.
+ * Starts the game with round 1 (index 0 --> round 0).
+ */
+public class Main { // "The name of the outer type and the file do not match." when it does match???
+
+    public Main() {
+    }
 
     public static void main(String[] args) {
 
         SwingUtilities.invokeLater(() -> {
-            // Tree tree = new Tree();
-            
-            // tree.popCard();
-            // tree.slay();
-
             Environment gameEnvironment = new Environment(0);  // Start with round 0
             gameEnvironment.startGame();
         } 

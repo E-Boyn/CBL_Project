@@ -1,7 +1,16 @@
 import java.awt.Color;
 import java.awt.event.*;
 
+/** Represents Dagger card in game.
+ * Dagger functionality:
+ *      - "Slay" enemies
+ *      - Slay environments to debris
+ *      - End game when used towards player card
+ */
 public class Dagger extends CardWithFocusListener {
+    
+    /** Constructs Dagger card with specific dimensions, color, and image.
+     */    
     public Dagger() {
         super();
         isDagger = true;
@@ -13,17 +22,19 @@ public class Dagger extends CardWithFocusListener {
         setImage("/images/dagger.png");
     }
 
+    // Notify listeners that dagger gained focs to triggers functionalities/actions
     @Override
     public void focusGained(FocusEvent e) {
         isActivated = true;
         notifyIsActiveListeners();
     }
 
+    // Displays Dagger on screen
     @Override
     protected void popCard() {
-        int taskbarHeightOffset = 50;  // Adjustable -- should not be covered by taskbar
+        int taskbarHeightOffset = 50;  // Set higher to not be covered by taskbar
 
-        // Set card location to the bottom-center but above taskbar
+        // Locates it to the bottom-center but above taskbar
         int x = (screenWidth - this.getWidth()) / 2;  // Center horizontally
         int y = screenHeight - this.getHeight() - taskbarHeightOffset;
 

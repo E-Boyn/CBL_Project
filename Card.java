@@ -6,7 +6,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+/** Represents a card in the game. 
+ * The card can be displayed as a JFrame & can be dragged.
+ */
 public class Card extends JFrame implements MouseMotionListener, MouseListener {
+    
+    // Moves card according to user's mouse drag
     @Override
     public void mouseDragged(MouseEvent e) {
         int x = (int) (e.getXOnScreen() - mousePosition.getX());
@@ -15,17 +20,18 @@ public class Card extends JFrame implements MouseMotionListener, MouseListener {
         this.setLocation(x, y);
     }
     
+    // Stores position where mouse is pressed for drag calculations
     @Override
     public void mousePressed(MouseEvent e) {
         mousePosition.x = e.getX();
         mousePosition.y = e.getY();
     }
     
-    protected String[] imagePaths; // String array template for random image generation
+    protected String[] imagePaths;
     protected int screenWidth;
     protected int screenHeight;
-    protected double heightPercentage; // Screen height percentage a card will occupy.
-    protected double widthHeightRatio; // Card ratio of width to height
+    protected double heightPercentage;
+    protected double widthHeightRatio;
     protected double widthRatio;
     protected double heightRatio;
 
@@ -44,17 +50,13 @@ public class Card extends JFrame implements MouseMotionListener, MouseListener {
     int yM;
 
 
-    /**
-     * Constructor initializes the card.
-     * 
-     * - Retrieves user's screen size.
-     * - Makes the card frame undecorated (no title bar).
-     * - Adds focus and mouse motion listeners to track user interactions with the card.
+    /** Constructs & initialize card object appearance.
+     * Retrieves screen size, set card to be undecorated, add mouse listener for interactions.
      */
 
     public Card() {
         setType(Type.UTILITY);
-        setAlwaysOnTop( true );
+        setAlwaysOnTop(true);
 
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -77,19 +79,17 @@ public class Card extends JFrame implements MouseMotionListener, MouseListener {
     public void slay() {}
 
 
-    /**
-     * Sets fixed image for the card and scales it according to
-     * screen height percentage and width/height ratio.
+    /** Set image in card by loading & resizing.
+     * Based on specified height percentage & width-to-height ratio.
      * 
-     * @param imagePath Images' file paths.
+     * @param imagePath Path to image to be displayed on card
      */
-
     protected void setImage(String imagePath) {
         // Load original image
         ImageIcon imageIcon = new ImageIcon(getClass().getResource(imagePath));
         Image image = imageIcon.getImage();
         
-        // Calculate height based on screen size and percentage
+        // Calculate height based on screen size & percentage
         int cardHeight = (int) (this.screenHeight * this.heightPercentage);
         int cardWidth = (int) (cardHeight * this.widthHeightRatio);
 
@@ -106,22 +106,20 @@ public class Card extends JFrame implements MouseMotionListener, MouseListener {
     }
 
 
-    /**
-     * Randomly selects and sets an image from the image paths array.
-     * Method for subclasses with randomized image generation (Tree, House, Cave).
-     * 
-     * @throws IllegalStateException When imagePaths array not initialized in subclass.
+    /** Randomly select image from imagePaths array to set card's image.
+     * Throws exception if no image paths are provided.
      */
 
     protected void setRandomImage() {
         if (imagePaths == null || imagePaths.length == 0) {
             throw new IllegalStateException("Image paths not initialized in subclass.");
-        } // Ensure the array is filled
+        }
         String randomImagePath = getRandomImageFromPaths(); // Randomly select an image path
         setImage(randomImagePath); // Use setImage to display image
     }
 
-    // Helper method to randomly select an image from the imagePaths array
+
+    // Helper method to randomly select image from the imagePaths array
     private String getRandomImageFromPaths() {
         Random random = new Random();
         int randomIndex = random.nextInt(imagePaths.length);
@@ -129,13 +127,12 @@ public class Card extends JFrame implements MouseMotionListener, MouseListener {
     }
 
 
-    /** From Card.java in environment-generation branch
-     * Generates random position on the screen within the given maximum
-     * width (maxX) and height (maxY) values.
+    /** Generates random position within specified boundaries.
+     * Functions for card appearance positions.
      * 
-     * @param maxX Max X-coordinate (horizontal) for the card.
-     * @param maxY Max Y-coordinate (vertical) for the card.
-     * @return A Point object containing random x and y coordinates.
+     * @param maxX Max x coordinate
+     * @param maxY Max Y coordinate
+     * @return Point object representing random position
      */
     public Point randomPosition(int maxX, int maxY) {
         int x = (int) (Math.random() * maxX);
@@ -144,9 +141,8 @@ public class Card extends JFrame implements MouseMotionListener, MouseListener {
     }
 
 
-    /**
-     * Displays the card. 
-     * To be overridden by subclasses to handle specifics of card displaying in the game.
+    /** Displays card on screen
+     * Subclases can override this to specify how card appear in game.
      */
     protected void popCard(){
     }
