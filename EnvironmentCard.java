@@ -20,8 +20,7 @@ public class EnvironmentCard extends CardWithFocusListener {
         System.out.println("Slay method called in EnvironmentCard.");  // Debugging statement
     
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-        Debris debreObjects = new Debris(this); 
-        // It says debreObjects not used when it is literally used???
+        new Debris(this); 
     }
     
 }

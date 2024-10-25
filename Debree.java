@@ -3,12 +3,6 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.Random;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 public class Debree extends Card{
     int type;
@@ -23,7 +17,7 @@ public Debree(EnvironmentCard originalCard){
     originalSize.width = originalCard.getSize().width;
     originalSize.height = originalCard.getSize().height;
     
-    color = color.BLACK;
+    color = Color.BLACK;
     System.out.println("Constructiong debree");
     chooseType();
     System.out.println("Type chosen to = "+ type);
