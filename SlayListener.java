@@ -6,5 +6,4 @@ public interface SlayListener {
 
     void playerSlain(Card card);
 
-    void treasureFound(Card card);
 }

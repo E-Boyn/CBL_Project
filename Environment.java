@@ -3,32 +3,42 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.WindowEvent;
+import javax.swing.*;
+import javax.swing.Timer;
+
 public class Environment implements FocusChangedListener, SlayListener {
 
     @Override
     public void somethingGotFocused(Card card) {
         System.out.println("CARD ADDED");
+        daggerdPrepearedFlag = true;
         history.add(card);  // Track focus history
     }
     
     @Override
     public void daggerGotFocused(Card card) {
-        System.out.println("Dagger focused");
-
-        if (!history.isEmpty()) {
-            // Get last focused card from history
-            Card lastFocusedCard = history.get(history.size() - 1);
-
-            // Only slay if the last focused card was the enemy
-            if (lastFocusedCard instanceof Enemy && !enemySlain) {
-                lastFocusedCard.slay();  // Slay the enemy
-
-                // Call enemySlain to progress to the next round
-                enemySlain(lastFocusedCard);
-            } else {
-                System.out.println("Environment focused, not slaying it.");
-            }
+        if(daggerdPrepearedFlag){
+            System.out.println("Dagger focused");
+            int lastFocusedIndex = history.size() - 1;
+            history.get(lastFocusedIndex).slay(); 
         }
+        daggerdPrepearedFlag = false;
+        // if (!history.isEmpty()) {
+        //     // Get last focused card from history
+        //     Card lastFocusedCard = history.get(history.size() - 1);
+
+        //     // Only slay if the last focused card was the enemy
+        //     if (lastFocusedCard instanceof Enemy && !enemySlain) {
+        //         lastFocusedCard.slay();  // Slay the enemy
+
+        //         // Call enemySlain to progress to the next round
+        //         
+        //     } else {
+        //         System.out.println("Environment focused, not slaying it.");
+        //     }
+        // }
     }
 
     @Override
@@ -56,6 +66,15 @@ public class Environment implements FocusChangedListener, SlayListener {
         if (!gameOver) {
             // TODO Make the Message show. It does not show rn idk why
             System.out.println("Treasure found! You win the game!");
+             Timer timer = new Timer(1000, event -> {
+
+            treasureCard.setDefaultCloseOperation(treasureCard.EXIT_ON_CLOSE);
+            treasureCard.dispatchEvent(new WindowEvent(treasureCard, WindowEvent.WINDOW_CLOSING));
+
+            }
+            );
+        
+        timer.start();
             gameOver = true;
         }
     }
@@ -88,13 +107,14 @@ public class Environment implements FocusChangedListener, SlayListener {
     boolean enemySpawned = false;
     boolean treasureSpawned = false; 
     boolean enemySlain = false;  // If the enemy is slain in the current round
-
     boolean gameOver = false;  // Ensure game over happens only once
-
+    boolean daggerdPrepearedFlag = false;
     // Constructor starts with round 0
-    Environment(int round, Player player, Dagger dagger) {
-        this.playerCard = player;
-        this.daggerCard = dagger;
+    Environment(int round) {
+        playerCard = new Player();
+        daggerCard = new Dagger();
+        playerCard.addIsActiveListener(this);
+        
         this.currentRound = round;
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -132,6 +152,7 @@ public class Environment implements FocusChangedListener, SlayListener {
 
             // Spawn a new enemy
             enemyCard = new Enemy();
+            enemyCard.addSlayListener(this);
 
             // Add listeners to environment and enemy cards
             for (EnvironmentCard environmentCard : environmentCards) {
@@ -209,14 +230,15 @@ public class Environment implements FocusChangedListener, SlayListener {
 
     // After the enemy is slain, go to the next round
     public void progressToNextRound() {
+
+        //TODO THERE IS NO ENEMY TO SLAY IN THE FINAL ROUND WHY IS THIS HERE
         if (currentRound == 2) {
             if (!gameOver) {  // Ensure game over logic is not triggered multiple times
                 System.out.println("Game Over: You found the treasure!");  // End the game
                 gameOver = true;  // Set the game over flag
             }
             return;
-        }
-
+        } 
         currentRound++;  // Move to the next round
         enemySpawned = false;  // Reset the flag for the new round's enemy
         treasureSpawned = false;  // Reset the flag for the treasure round
@@ -226,9 +248,11 @@ public class Environment implements FocusChangedListener, SlayListener {
     
     // Helper method to position cards (enemy, treasure, environment)
     void positionCards() {
+        int taskbarheight = Toolkit.getDefaultToolkit().getScreenSize().height 
+                                - GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height;
         Random rand = new Random();
         List<Rectangle> environmentBounds = new ArrayList<>();
-        int safeZoneHeightOffset = 150;  // Place cards ABOVE Player/Dagger
+        int safeZoneHeightOffset = daggerCard.getHeight() + taskbarheight;  // Place cards ABOVE Player/Dagger
 
         // Generate the environment cards' positions
         for (Card environmentCard : environmentCards) {
@@ -275,7 +299,7 @@ public class Environment implements FocusChangedListener, SlayListener {
 
     // For setupTreasureRound()
     // Random number generator for two arguments (min, max)
-    private int randomNumber(int min, int max) {
+    public static int randomNumber(int min, int max) {
         return (int) (Math.random() * (max - min + 1) + min);
     }
 
@@ -285,4 +309,5 @@ public class Environment implements FocusChangedListener, SlayListener {
     private int randomNumber(int max) {
         return (int) (Math.random() * (max - 1)) + 1;
     }
+
 }

@@ -18,7 +18,7 @@ public class CardWithFocusListener extends Card implements FocusListener{
     @Override
     public void slay() {
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-        notifySlayListeners(this);
+        notifySlayListeners();
     }
 
     //======================================================================    
@@ -62,11 +62,11 @@ public class CardWithFocusListener extends Card implements FocusListener{
                 listener.daggerGotFocused(this);
             }
          
-        } else if (this instanceof EnvironmentCard) {
+        } else if(this instanceof Treasure) {
             for (FocusChangedListener listener : focusListeners) {
-                listener.environmentClosed(this); //TODO DOOUBLE CHECK THIS PLEASE I'M SO TIRED
+                listener.treasureFound(this);
             }
-        } else {
+            } else {
             for (FocusChangedListener listener : focusListeners) {
                 listener.somethingGotFocused(this);
             }
@@ -74,16 +74,16 @@ public class CardWithFocusListener extends Card implements FocusListener{
     }
     
 
-    protected void notifySlayListeners(Card card) {
-
-        if (card instanceof EnvironmentCard) {
+    protected void notifySlayListeners() {
+        if (this instanceof EnvironmentCard) {
             for (SlayListener listener : slayListeners) {
-                listener.environmentSlain(card);
+                listener.environmentSlain(this);
             }
 
-        } else if (card instanceof Enemy) {
+        } else if (this instanceof Enemy) {
+            System.out.println("Notifying enemy slay listeners");
             for (SlayListener listener : slayListeners) {
-                listener.enemySlain(card);
+                listener.enemySlain(this);
             }
         }
     }

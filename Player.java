@@ -5,7 +5,9 @@ public class Player extends CardWithFocusListener {
         super();
         heightPercentage = 0.1111;
         widthHeightRatio = 1.0;
+        
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
+
         color = new Color(78, 36, 247);
         setBorder();
         setImage("/images/player.png");

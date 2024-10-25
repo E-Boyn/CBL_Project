@@ -53,16 +53,19 @@ public class Card extends JFrame implements MouseMotionListener, MouseListener {
      */
 
     public Card() {
-        
+        setType(Type.UTILITY);
+        setAlwaysOnTop( true );
+
+
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.screenWidth = screenSize.width;
         this.screenHeight = screenSize.height;
 
         setBorder();
 
-        this.setUndecorated(true);
-        this.addMouseListener(this);
-        this.addMouseMotionListener(this);
+        setUndecorated(true);
+        addMouseListener(this);
+        addMouseMotionListener(this);
     }
 
 
@@ -71,10 +74,7 @@ public class Card extends JFrame implements MouseMotionListener, MouseListener {
     }
 
 
-    public void slay() {
-        isActivated = false;
-        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-    }
+    public void slay() {}
 
 
     /**
