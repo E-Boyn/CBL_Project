@@ -35,4 +35,5 @@ public class Enemy extends CardWithFocusListener {
     protected void popCard() {
         this.setVisible(true);
     }
+    
 }

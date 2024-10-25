@@ -24,4 +24,5 @@ public class Treasure extends CardWithFocusListener {
     protected void popCard() {
         this.setVisible(true);
     }
+    
 }

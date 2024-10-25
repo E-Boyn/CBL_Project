@@ -41,4 +41,5 @@ public class Dagger extends CardWithFocusListener {
         this.setLocation(x, y);
         this.setVisible(true); 
     }
+
 }

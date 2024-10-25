@@ -22,4 +22,5 @@ public class House extends EnvironmentCard {
     protected void popCard() {
         this.setVisible(true);
     }
+    
 }

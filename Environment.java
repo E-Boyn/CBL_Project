@@ -290,4 +290,5 @@ public class Environment implements FocusChangedListener, SlayListener {
     private int randomNumber(int max) {
         return (int) (Math.random() * (max - 1)) + 1;
     }
+    
 }

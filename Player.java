@@ -32,4 +32,5 @@ public class Player extends CardWithFocusListener {
         this.setLocation(x, y);
         this.setVisible(true);
     }
+
 }

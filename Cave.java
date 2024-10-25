@@ -22,4 +22,5 @@ public class Cave extends EnvironmentCard {
     protected void popCard() {
         this.setVisible(true);
     }
+    
 }

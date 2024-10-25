@@ -22,4 +22,5 @@ public class Tree extends EnvironmentCard {
     protected void popCard() {
         this.setVisible(true);
     }
+    
 }
