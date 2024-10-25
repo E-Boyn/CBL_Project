@@ -40,7 +40,7 @@ public class Card extends JFrame implements MouseMotionListener, MouseListener {
     protected boolean isActivated;
     public boolean isDagger = false;
     JLabel diplayImage;
-
+    public boolean isDebree = false;
     ImageIcon image;
 
     protected Color color = new Color(23, 244, 106);
@@ -89,7 +89,8 @@ public class Card extends JFrame implements MouseMotionListener, MouseListener {
         ImageIcon imageIcon = new ImageIcon(getClass().getResource(imagePath));
         Image image = imageIcon.getImage();
         
-        // Calculate height based on screen size & percentage
+        // Calculate height based on screen size and percentage
+        
         int cardHeight = (int) (this.screenHeight * this.heightPercentage);
         int cardWidth = (int) (cardHeight * this.widthHeightRatio);
 

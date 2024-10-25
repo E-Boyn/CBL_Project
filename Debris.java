@@ -9,62 +9,67 @@ import java.util.Random;
  */
 public class Debris {
     Card originalCard = new Card();
-
-    Dimension originalSize = new Dimension();
+    
     Dimension debreeSize = new Dimension();
-
-    Random rand = new Random();
 
     List<Card> debris = new ArrayList<>();
     int numOfobjects;
+     Random rand = new Random();
+Debree debree;
 
-    /** Constructs debris based on origibnal card.
-     * 
-     * @param card Orginal crad which debris are created from.
-     */
-    public Debris(Card card) {
-        originalSize.width = card.getSize().width;
-        originalSize.height = card.getSize().height;
+    public Debris(EnvironmentCard originalCard) {
+        // super();
+        // this.setAlwaysOnTop(true);  // Ensure debris is on top -- to make sure it runs damn
         
-        originalCard = card;
+        // this.heightPercentage = 0.1; 
+        // this.widthHeightRatio = 1.0;
 
-        numOfobjects = rand.nextInt(3) + 1;
-        for (int i = 0; i < numOfobjects; i++) {
-            debris.add(new Card());
+        
+        originalCard = originalCard;
 
-            debris.get(i).heightPercentage = 0.1; 
-            debris.get(i).widthHeightRatio = 1.0;
+       numOfobjects = rand.nextInt(3)+1;
+       for ( int i = 0; i < numOfobjects; i++) {
+                debree = new Debree(originalCard); 
                 
-            debris.get(i).getContentPane().setBackground(Color.BLACK);
-            debris.get(i).color = new Color(255, 0, 0);
-
-            setSize(debris.get(i));
-            setPosition(debris.get(i));
-                
-            debris.get(i).setVisible(true);
-        }
+                debree.setVisible(true);
+                debris.add(debree);
+       }
     }
 
 
-    // Set random position near the original card
-    private void setPosition(Card card) {
-        
-        int xOffset = rand.nextInt(originalSize.width);
-        int yOffset = rand.nextInt(originalSize.height);
+        // Set random position near the original card (within a small range)
+  
 
-        Point debrisPosition = new Point(originalCard.getX() + xOffset, 
-            originalCard.getY() + yOffset);
-        
-        card.setLocation(debrisPosition.x, debrisPosition.y);
-    }
+    //     // Generate random size for debris (smaller than original card)
+    // private void setSize(Card card){
+    //     debreeSize.height = rand.nextInt(originalSize.height / 2) + 100;
+    //     debreeSize.width = (int) (debreeSize.height * card.widthHeightRatio);
+
+    //     card.setSize(debreeSize);
+    // }
 
 
-    // Generate random size for debris. must be smaller than original card
-    private void setSize(Card card) {
-        debreeSize.width  = rand.nextInt(originalSize.width / 2) + 1;
-        debreeSize.height = rand.nextInt(originalSize.height / 2) + 1;
+// private void setImage(Card card) {
+//     // Load original image
+//     String imagePath = getRandomImageFromPaths(card);
 
-        card.setSize(debreeSize);
-    }
+//     ImageIcon imageIcon = new ImageIcon(getClass().getResource(imagePath));
+//     Image image = imageIcon.getImage();
     
+//     // Calculate height based on screen size and percentage
+//     debreeSize.height = rand.nextInt(originalSize.height / 2) + 100;
+//     debreeSize.width = (int) (debreeSize.height * card.widthHeightRatio);
+
+    
+//     // Resize image to fit card
+//     Image scaledImage = image.getScaledInstance( debreeSize.width, debreeSize.height, Image.SCALE_SMOOTH);
+//     ImageIcon scaledIcon = new ImageIcon(scaledImage);
+
+//     // Set scaled image in JLabel
+//     JLabel diplayImage = new JLabel(scaledIcon);
+//     card.add(diplayImage);
+
+//     card.setSize(debreeSize);
+//     card.pack(); // Adjust frame to fit image
+// }
 }
