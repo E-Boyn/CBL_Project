@@ -23,6 +23,8 @@ public class Card extends JFrame implements MouseMotionListener, MouseListener {
     // Stores position where mouse is pressed for drag calculations
     @Override
     public void mousePressed(MouseEvent e) {
+        
+        setCursor(new Cursor(Cursor.MOVE_CURSOR));
         mousePosition.x = e.getX();
         mousePosition.y = e.getY();
     }
@@ -148,7 +150,22 @@ public class Card extends JFrame implements MouseMotionListener, MouseListener {
     protected void popCard(){
     }
 
+//===== Used for mouse cursor ====
 
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }
     // ===== Unused methods required for interface =====
     
     @Override
@@ -156,19 +173,8 @@ public class Card extends JFrame implements MouseMotionListener, MouseListener {
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {        
+    public void mouseClicked(MouseEvent e) {     
     }
 
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-    }
 
 }
