@@ -7,7 +7,5 @@ public interface FocusChangedListener {
     
     void treasureFound(Card card);
 
-    void environmentClosed(Card card);
-
     void daggerGotFocused(Card card);
 }

@@ -14,7 +14,6 @@ public class Environment implements FocusChangedListener, SlayListener {
     // Tracks when any card in game gains focus
     @Override
     public void somethingGotFocused(Card card) {
-        System.out.println("CARD ADDED");
         daggerdPrepearedFlag = true;
         history.add(card);  // Track focus history
     }
@@ -23,7 +22,6 @@ public class Environment implements FocusChangedListener, SlayListener {
     @Override
     public void daggerGotFocused(Card card) {
         if (daggerdPrepearedFlag) {
-            System.out.println("Dagger focused");
             int lastFocusedIndex = history.size() - 1;
             history.get(lastFocusedIndex).slay(); 
         }
@@ -39,15 +37,9 @@ public class Environment implements FocusChangedListener, SlayListener {
         }
     }
 
-    @Override
-    public void environmentClosed(Card card) {
-        throw new UnsupportedOperationException("Unimplemented method 'environmentClosed'");
-    }
-
     // Progresses game to next round if enemy is slain
     @Override
     public void enemySlain(Card card) {
-        System.out.println("Enemy slain! Progressing to next round...");
         enemySlain = true;  // Mark enemy as slain
         progressToNextRound();  // Move to the next round after enemy is slain
     }
@@ -197,13 +189,12 @@ public class Environment implements FocusChangedListener, SlayListener {
     }
 
     private void endGame(){
-        
-        end = new TutorialEnd(gameOver);
+            end = new TutorialEnd(gameOver);
 
-        Timer timer = new Timer(5000, event -> {
+        Timer timer2 = new Timer(5000, event -> {
             closeCard(playerCard);
            });
-        timer.start();
+        timer2.start();
         
     }
    

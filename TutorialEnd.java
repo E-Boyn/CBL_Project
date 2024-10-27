@@ -5,8 +5,8 @@ public class TutorialEnd extends CardWithFocusListener{
     public TutorialEnd(boolean gameOver){
           super();
 
-          heightPercentage = 0.55;
-          widthHeightRatio = 1.25;
+          heightPercentage = 0.5556;
+          widthHeightRatio = 1.5;
 
           if(gameOver){
             setEnd();
@@ -14,7 +14,7 @@ public class TutorialEnd extends CardWithFocusListener{
             setTutorial();
         }
 
-          int taskbarheight = Toolkit.getDefaultToolkit().getScreenSize().height 
+                 int taskbarheight = Toolkit.getDefaultToolkit().getScreenSize().height 
                   - GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height;
         //Calculate the frame location
           int x = (screenWidth - getWidth()) / 2;
@@ -23,7 +23,6 @@ public class TutorialEnd extends CardWithFocusListener{
         //Set the new frame location
         setLocation(x, y);   
       
-
         setBorder();
         setVisible(true);
     }
@@ -39,10 +38,9 @@ public class TutorialEnd extends CardWithFocusListener{
     }
 
     private void setEnd(){
-
         color = new Color(0,0,0);
-    
-        //TODO CHANGE IMAGE 
-        setImage("/images/tutorial.png");
+        setImage("/images/endOfGame.png");
+        
+        System.out.println("sucsesfull");
     }
 }
