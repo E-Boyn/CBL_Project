@@ -39,7 +39,7 @@ public class TutorialEnd extends CardWithFocusListener{
 
     private void setEnd(){
         color = new Color(0,0,0);
-        setImage("/images/endOfGame.png");
+        setImage("/images/endOfGame2.png");
         
         System.out.println("sucsesfull");
     }
