@@ -14,6 +14,8 @@ public class Card extends JFrame implements MouseMotionListener, MouseListener {
     // Moves card according to user's mouse drag
     @Override
     public void mouseDragged(MouseEvent e) {
+        
+        setCursor(new Cursor(Cursor.MOVE_CURSOR));
         int x = (int) (e.getXOnScreen() - mousePosition.getX());
         int y = (int) (e.getYOnScreen() - mousePosition.getY());
        
@@ -24,7 +26,6 @@ public class Card extends JFrame implements MouseMotionListener, MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         
-        setCursor(new Cursor(Cursor.MOVE_CURSOR));
         mousePosition.x = e.getX();
         mousePosition.y = e.getY();
     }

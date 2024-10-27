@@ -9,7 +9,6 @@ public class Treasure extends CardWithFocusListener {
      */
     public Treasure() {
         super();
-
         
         color = new Color(255, 238, 0);
         setBorder();
