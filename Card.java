@@ -88,6 +88,14 @@ public class Card extends JFrame implements MouseMotionListener, MouseListener {
      * @param imagePath Path to image to be displayed on card
      */
     protected void setImage(String imagePath) {
+
+        java.net.URL imageURL = getClass().getResource(imagePath);
+    
+        if (imageURL == null) {
+            System.err.println("Error: Can't load image from: " + imagePath);
+            return; // Exit the method if the image can't be found
+        }
+        
         // Load original image
         ImageIcon imageIcon = new ImageIcon(getClass().getResource(imagePath));
         Image image = imageIcon.getImage();
