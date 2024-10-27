@@ -4,5 +4,6 @@ public interface SlayListener {
 
     void enemySlain(Card card);
 
-    void TutorialOrEndSlain(Card card);
+    void tutorialOrEndSlain(Card card);
+    
 }

@@ -20,17 +20,17 @@ public class Enemy extends CardWithFocusListener {
         setImage("/images/enemyRED.png");
     }
 
-    // Comment
+    // Handle mouse drag events on the Enemy card
     @Override
     public void mouseDragged(MouseEvent e) {
     }
     
-    // Comment
+    // Handle mouse press events on the Enemy card
     @Override
     public void mousePressed(MouseEvent e) {
     }
 
-    // Comment
+    // Displays card on screen
     @Override
     protected void popCard() {
         this.setVisible(true);

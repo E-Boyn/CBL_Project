@@ -29,9 +29,9 @@ public class Environment implements FocusChangedListener, SlayListener {
     }
 
     @Override
-    public void TutorialOrEndSlain(Card card) {
-        if(!gameOver){
-        startGame();
+    public void tutorialOrEndSlain(Card card) {
+        if (!gameOver) {
+            startGame();
         } else {
             closeCard(playerCard);
         }
@@ -47,11 +47,9 @@ public class Environment implements FocusChangedListener, SlayListener {
     // End game when treasure is found
     @Override
     public void treasureFound(Card card) {
-            gameOver = true;
-            endGame();
+        gameOver = true;
+        endGame();
     }
-
-    // =============================================================================================
 
 
     private int currentRound = 0;  // Track the current round
@@ -71,12 +69,13 @@ public class Environment implements FocusChangedListener, SlayListener {
     int screenWidth;
     int screenHeight;
 
-    //Control flags
+    // Control flags
     boolean enemySpawned = false;
     boolean treasureSpawned = false; 
     boolean enemySlain = false;  // If the enemy is slain in the current round
     boolean gameOver = false;  // Ensure game over happens only once
     boolean daggerdPrepearedFlag = false;
+
 
     /** Environment constructor that starts game with round 1 (index 0).
      */
@@ -101,14 +100,11 @@ public class Environment implements FocusChangedListener, SlayListener {
         
         tutorial.addIsActiveListener(this);
         tutorial.addSlayListener(this);
-
-        
         
     }
 
-    
 
-//========================================== Start of Round managment ================================================
+    // ==================== Start of Round managment ====================
 
     /** Go to next round when enemy is slain.
      */
@@ -188,23 +184,25 @@ public class Environment implements FocusChangedListener, SlayListener {
         }
     }
 
-    private void endGame(){
-            end = new TutorialEnd(gameOver);
+    private void endGame() {
+        end = new TutorialEnd(gameOver);
 
         Timer timer2 = new Timer(5000, event -> {
             closeCard(playerCard);
-           });
+        }
+        );
         timer2.start();
         
     }
    
-   
 
-//========================================== End of Rounds ================================================
+    // ==================== End of Round managment ====================
 
-//==================================== Start of card management ===========================================
 
-// Method to spawn player & dagger cards (called only once at the start)
+
+    // ==================== Start of Card managment ====================
+
+    // Method to spawn player & dagger cards (called only once at the start)
     private void spawnDaggerPlayer() {
         playerCard.popCard();
         daggerCard.popCard();
@@ -278,7 +276,9 @@ public class Environment implements FocusChangedListener, SlayListener {
         }
     }
 
-//------------------------ -Simple calculation methods --------------------
+
+
+    // ==================== Necessary calculation methods ====================
 
     // Helper method to get the top-left point of a given rectangle (environment card bounds)
     private Point getTopLeftPointInside(Rectangle rect) {
@@ -300,7 +300,7 @@ public class Environment implements FocusChangedListener, SlayListener {
     }
 
 
-    private void closeCard(Card card){
+    private void closeCard(Card card) {
         card.dispatchEvent(new WindowEvent(card, WindowEvent.WINDOW_CLOSING));
     }
     

@@ -29,7 +29,7 @@ public class CardWithFocusListener extends Card implements FocusListener {
         notifySlayListeners();
     }
 
-    //======================================================================    
+    // ================================================================================    
 
     private List<FocusChangedListener> focusListeners = new ArrayList<>();
     private List<SlayListener> slayListeners = new ArrayList<>();
@@ -98,7 +98,7 @@ public class CardWithFocusListener extends Card implements FocusListener {
             for (SlayListener listener : slayListeners) {
                 
 
-                listener.TutorialOrEndSlain(this);
+                listener.tutorialOrEndSlain(this);
             }
 
         } else if (this instanceof Enemy) {

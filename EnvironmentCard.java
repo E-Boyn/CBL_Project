@@ -5,7 +5,6 @@ import java.awt.event.*;
  */
 public class EnvironmentCard extends CardWithFocusListener {
     
-    
     // Notifies that environment card lost focus i.e. explored and get closed
     @Override
     public void focusLost(FocusEvent e) {

@@ -79,7 +79,8 @@ public class Card extends JFrame implements MouseMotionListener, MouseListener {
     }
 
 
-    public void slay() {}
+    public void slay() {
+    }
 
 
     /** Set image in card by loading & resizing.
@@ -92,7 +93,7 @@ public class Card extends JFrame implements MouseMotionListener, MouseListener {
         java.net.URL imageURL = getClass().getResource(imagePath);
     
         if (imageURL == null) {
-            System.err.println("Error: Can't load image from: " + imagePath);
+            System.err.println("Error: Unable to load image from: " + imagePath);
             return; // Exit the method if the image can't be found
         }
         
@@ -101,7 +102,6 @@ public class Card extends JFrame implements MouseMotionListener, MouseListener {
         Image image = imageIcon.getImage();
         
         // Calculate height based on screen size and percentage
-        
         int cardHeight = (int) (this.screenHeight * this.heightPercentage);
         int cardWidth = (int) (cardHeight * this.widthHeightRatio);
 
@@ -159,7 +159,9 @@ public class Card extends JFrame implements MouseMotionListener, MouseListener {
     protected void popCard(){
     }
 
-//===== Used for mouse cursor ====
+
+
+    // ==================== Mouse cursor necessities ====================
 
     @Override
     public void mouseReleased(MouseEvent e) {
@@ -175,7 +177,10 @@ public class Card extends JFrame implements MouseMotionListener, MouseListener {
     public void mouseExited(MouseEvent e) {
         setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }
-    // ===== Unused methods required for interface =====
+
+
+
+    // ==================== Interface necessities ====================
     
     @Override
     public void mouseMoved(MouseEvent e) {
