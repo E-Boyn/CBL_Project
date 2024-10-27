@@ -97,12 +97,12 @@ public class CardWithFocusListener extends Card implements FocusListener {
         if (this instanceof TutorialEnd) {
             for (SlayListener listener : slayListeners) {
                 
-            System.out.println("Notifying tutorial slay listeners");
+
                 listener.TutorialOrEndSlain(this);
             }
 
         } else if (this instanceof Enemy) {
-            System.out.println("Notifying enemy slay listeners");
+            
             for (SlayListener listener : slayListeners) {
                 listener.enemySlain(this);
             }
