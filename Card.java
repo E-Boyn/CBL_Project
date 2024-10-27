@@ -75,7 +75,7 @@ public class Card extends JFrame implements MouseMotionListener, MouseListener {
 
 
     protected void setBorder() {
-        this.getRootPane().setBorder(BorderFactory.createDashedBorder(color, 2, 5, 1, false));
+        this.getRootPane().setBorder(BorderFactory.createLineBorder(color, 2,  true));
     }
 
 
