@@ -31,14 +31,20 @@ public class Environment implements FocusChangedListener, SlayListener {
         daggerdPrepearedFlag = false;
     }
 
+    
     @Override
-    public void environmentClosed(Card card) {
-        throw new UnsupportedOperationException("Unimplemented method 'environmentClosed'");
+    public void TutorialOrEndSlain(Card card) {
+        System.out.println("TutorialOrEndSlain");
+        if(!gameOver){
+        startGame();
+        } else {
+            //TODO
+        }
     }
 
     @Override
-    public void environmentSlain(Card card) {
-        throw new UnsupportedOperationException("Unimplemented method 'environmentSlain'");
+    public void environmentClosed(Card card) {
+        throw new UnsupportedOperationException("Unimplemented method 'environmentClosed'");
     }
 
     // Progresses game to next round if enemy is slain
@@ -52,24 +58,19 @@ public class Environment implements FocusChangedListener, SlayListener {
     // End game when treasure is found
     @Override
     public void treasureFound(Card card) {
-        if (!gameOver) {
-            System.out.println("Treasure found! You win the game!");
-            Timer timer = new Timer(1000, event -> {
-                treasureCard.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                treasureCard.dispatchEvent(new WindowEvent(treasureCard, 
-                    WindowEvent.WINDOW_CLOSING));
-            }
-            );
+        // if (!gameOver) {
+        //     System.out.println("Treasure found! You win the game!");
+        //     Timer timer = new Timer(1000, event -> {
+        //         treasureCard.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        //         treasureCard.dispatchEvent(new WindowEvent(treasureCard, 
+        //             WindowEvent.WINDOW_CLOSING));
+        //     }
+        //     );
         
-            timer.start();
+        //     timer.start();
             gameOver = true;
-        }
+        
     }
-
-    @Override
-    public void playerSlain(Card card) {
-    }
-
 
     // =============================================================================================
 
@@ -84,6 +85,7 @@ public class Environment implements FocusChangedListener, SlayListener {
     Dagger daggerCard;
     Enemy enemyCard; // One per round in round 1-2
     Treasure treasureCard; // One in round 3 or final round
+    Tutorial tutorial;
 
     int numOfobjects;
     int screenWidth;
@@ -101,7 +103,7 @@ public class Environment implements FocusChangedListener, SlayListener {
     Environment(int round) {
         playerCard = new Player();
         daggerCard = new Dagger();
-        playerCard.addIsActiveListener(this);
+        tutorial = new Tutorial();
         
         this.currentRound = round;
 
@@ -111,8 +113,17 @@ public class Environment implements FocusChangedListener, SlayListener {
 
         // Spawn player & dagger only once at round 1
         spawnDaggerPlayer();
+        
+        playerCard.addIsActiveListener(this);
+        playerCard.addSlayListener(this);
+        
+        daggerCard.addIsActiveListener(this);  // Ensure dagger card listens for focus
+        
+        tutorial.addIsActiveListener(this);
+        tutorial.addSlayListener(this);
 
-        startGame();
+        
+        
     }
 
     /** Start the game & progress through rounds.
@@ -148,7 +159,6 @@ public class Environment implements FocusChangedListener, SlayListener {
 
             // Add enemy & dagger listeners
             enemyCard.addIsActiveListener(this);
-            daggerCard.addIsActiveListener(this);  // Ensure dagger card listens for focus
 
             positionCards();  // Position cards on screen
 
@@ -290,5 +300,6 @@ public class Environment implements FocusChangedListener, SlayListener {
     private int randomNumber(int max) {
         return (int) (Math.random() * (max - 1)) + 1;
     }
+
     
 }

@@ -8,8 +8,8 @@ public class Main { // "The name of the outer type and the file do not match." w
     public static void main(String[] args) {
 
         SwingUtilities.invokeLater(() -> {
+
             Environment gameEnvironment = new Environment(0);  // Start with round 0
-            gameEnvironment.startGame();
         } 
         );
     }

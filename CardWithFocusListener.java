@@ -94,9 +94,11 @@ public class CardWithFocusListener extends Card implements FocusListener {
     /** Notifies all registered isActive listeners that card has been slain.
      */
     protected void notifySlayListeners() {
-        if (this instanceof EnvironmentCard) {
+        if (this instanceof Tutorial) {
             for (SlayListener listener : slayListeners) {
-                listener.environmentSlain(this);
+                
+            System.out.println("Notifying tutorial slay listeners");
+                listener.TutorialOrEndSlain(this);
             }
 
         } else if (this instanceof Enemy) {
