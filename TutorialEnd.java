@@ -49,6 +49,6 @@ public class TutorialEnd extends CardWithFocusListener {
         color = new Color(0, 0, 0);
         setImage("/images/endOfGame.png");
         
-        System.out.println("Succesful attempt, Game Over!");
+        System.out.println("Treasure found, Game Over!");
     }
 }
